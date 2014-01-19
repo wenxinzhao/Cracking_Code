@@ -1,4 +1,3 @@
-
 class MatrixProcessor:
 
     def __init__(self, matrix):
@@ -16,7 +15,7 @@ class MatrixProcessor:
         return rowstring
 
     def rotate90CW(self):
-        #strategy is to make what are now rows into columns, and reverse the order, which mimics the effect of rotation on the matrix.
+        
         columnlist=[]
         for row in self.matrix:
             #set up a list for columns
