@@ -17,9 +17,11 @@ int StrToInt(const char *str){
 		str = str + 1;
 		while (*str != '\0')
 		{
-
-			value = value * 10 + (*str - '0');
-
+			if (*str >= '0' && *str <= '9')
+			{
+				value = value * 10 + (*str - '0');
+			}
+			else break;
 			str = str + 1;
 		}
 		value = -value;
@@ -30,17 +32,35 @@ int StrToInt(const char *str){
 		while (*str != '\0')
 		{
 
-			value = value * 10 + (*str - '0');
+			if (*str >= '0' && *str <= '9')
+			{
+				value = value * 10 + (*str - '0');
+			}
+			else break;
 
 			str = str + 1;
 		}
+	}
+	else{
+		while (*str != '\0')
+		{
+
+			if (*str >= '0' && *str <= '9')
+			{
+				value = value * 10 + (*str - '0');
+			}
+			else break;
+
+			str = str + 1;
+		}
+
 	}
 	return value;
 }
 
 int main(){
 
-	const char *a = "+133";
+	const char *a = "-44b13v3";
 	value = StrToInt(a);
 	cout << value << endl;
 	getchar();
