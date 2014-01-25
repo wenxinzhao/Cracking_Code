@@ -9,6 +9,9 @@ Terry  */
 #include<iostream>
 using namespace std;
 
+#define INT_MAX 1000000000
+#define INT_MIN -2147483647
+
 long value;
 int StrToInt(const char *str){
 	if (*str == NULL)
@@ -20,6 +23,8 @@ int StrToInt(const char *str){
 			if (*str >= '0' && *str <= '9')
 			{
 				value = value * 10 + (*str - '0');
+				if (value >= INT_MAX)
+					value = INT_MAX;
 			}
 			else break;
 			str = str + 1;
@@ -35,6 +40,12 @@ int StrToInt(const char *str){
 			if (*str >= '0' && *str <= '9')
 			{
 				value = value * 10 + (*str - '0');
+				if (value >= INT_MAX){
+					value = INT_MAX;
+					break;
+				}
+					
+
 			}
 			else break;
 
@@ -60,7 +71,7 @@ int StrToInt(const char *str){
 
 int main(){
 
-	const char *a = "-44b13v3";
+	const char *a = "-595634498";
 	value = StrToInt(a);
 	cout << value << endl;
 	getchar();
