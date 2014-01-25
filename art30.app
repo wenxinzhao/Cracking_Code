@@ -13,15 +13,26 @@ long value;
 int StrToInt(const char *str){
 	if (*str == NULL)
 		value = 0;
-	else {
+	else if (*str == '-'){
+		str = str + 1;
+		while (*str != '\0')
+		{
+
+			value = value * 10 + (*str - '0');
+
+			str = str + 1;
+		}
+		value = -value;
+	}
+	else if (*str == '+'){
+		str = str + 1;
 
 		while (*str != '\0')
 		{
-			if (*str >= '0' && *str <= '9')
-			{
-				value = value * 10 + (*str - '0');
-			}
-			str=str+1;
+
+			value = value * 10 + (*str - '0');
+
+			str = str + 1;
 		}
 	}
 	return value;
@@ -29,7 +40,7 @@ int StrToInt(const char *str){
 
 int main(){
 
-	const char *a = "687577809798647";
+	const char *a = "+133";
 	value = StrToInt(a);
 	cout << value << endl;
 	getchar();
