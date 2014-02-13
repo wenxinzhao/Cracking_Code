@@ -63,7 +63,7 @@ int stackNumMin = 0;
 int minValue = 1000;
 
 int min(){
-	minValue = bufferMin[stackNumMin -1];
+	minValue = bufferMin[stackNumMin-1];
 	return minValue;
 }
 
@@ -85,7 +85,7 @@ int pop(){
 	int value = buffer[stackNum];
 	buffer[stackNum] = 0;
 	
-	if (bufferMin[stackNumMin-1] != buffer[stackNum-1]){
+	if (bufferMin[stackNumMin - 1] == value){
 		stackNumMin--;
 	}
 	
@@ -96,10 +96,11 @@ int pop(){
 
 int main(){
 	push(5);
-	push(6);
+	push(9);
 	push(3);
-	push(7);
-	pop();
+	push(1);
+	push(4);
+	//pop();
 	pop();
 	//pop();
 	cout << min() << endl;
