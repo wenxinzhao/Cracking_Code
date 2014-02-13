@@ -1,4 +1,4 @@
-/* CC Question 2.3
+/* CC150  Question 3.3
 Imagine a (literal) stack of plates. If the stack gets too high, it might topple. 
 Therefore, in real life, we would likely start a new stack when the previous stack exceeds some threshold. 
 Implement a data structure SetOfStacks that mimics this. SetOfStacks should be composed of several stacks, 
