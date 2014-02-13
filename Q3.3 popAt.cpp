@@ -37,7 +37,7 @@ public:
 	int pop(){
 		/*if (count==0)
 			cout << "VOID" << endl;*/
-		int value = buffer[count];
+		int value = buffer[count-1];
 		buffer[count-1] = 0;
 		count--;
 		return value;
@@ -86,8 +86,9 @@ public:
 	}
 
 	int popAt(int index){ //do pop on specific stack
-		stacks[index].count--;
+		
 		return stacks[index].pop();
+		
 			
 	}
 
