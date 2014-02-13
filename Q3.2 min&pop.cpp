@@ -47,3 +47,62 @@ int main(){
 	system("pause");
 	return 0;
 }
+
+
+///////----save space version--------------------------
+#include<iostream>
+using namespace std;
+
+
+const int stackSize = 100;
+int buffer[stackSize];
+int bufferMin[stackSize] = { 1000 };
+
+int stackNum = 0;
+int stackNumMin = 0;
+int minValue = 1000;
+
+int min(){
+	minValue = bufferMin[stackNumMin -1];
+	return minValue;
+}
+
+void push(int value){	
+	buffer[stackNum]  = value;
+	stackNum++;
+	if (minValue > value){
+		minValue = value;
+		bufferMin[stackNumMin] = minValue;
+		stackNumMin++;
+	}
+	
+
+}
+
+int pop(){
+	stackNum--;
+
+	int value = buffer[stackNum];
+	buffer[stackNum] = 0;
+	
+	if (bufferMin[stackNumMin-1] != buffer[stackNum-1]){
+		stackNumMin--;
+	}
+	
+	return value;
+}
+
+
+
+int main(){
+	push(5);
+	push(6);
+	push(3);
+	push(7);
+	pop();
+	pop();
+	//pop();
+	cout << min() << endl;
+	system("pause");
+	return 0;
+}
