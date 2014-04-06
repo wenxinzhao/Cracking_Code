@@ -58,8 +58,7 @@ public:
 ListNode* initList(int a[], int n, int m){
 	ListNode *head = NULL, *p = NULL,*q = NULL;
 	for (int i = 0; i < 10; i++){
-		ListNode *nd = new ListNode(NULL);
-		nd->val = a[i];
+		ListNode *nd = new ListNode(a[i]);
 		if (i == m) q = nd;
 		if (i == 0){
 			head = p = nd;
@@ -77,9 +76,13 @@ ListNode* initList(int a[], int n, int m){
 Solution sul;
 void main(){
 	int a[] = {1,2,3,4,5,1,6,7,8,9,0};
-	int n = 10, m = 3;
-	cout<<sul.hasCycle(initList(a,n,m));
-	getchar();
+	int n = 10, m = 2;
+	if (sul.hasCycle(initList(a, n, m)))
+		cout << "the list has a circle" << endl;
+	else 
+		cout << "the list has no circle" << endl;
+	
+	system("pause");
 
 }
 
