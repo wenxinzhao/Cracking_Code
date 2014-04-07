@@ -209,11 +209,25 @@ void Solution::reorderList(ListNode *head) {
 		}
 
 	//step3: connect first list with reversed list
-		while (head_n != NULL){
-
-
-		}
-		
+		ListNode  *l1 = head;
+		ListNode  *l2 = head_n;
+		while (l2 != NULL){
+			ListNode  *l1next = l1->next;
+			ListNode  *l2next = l2->next;
+			l1->next = l2;
+			l2->next = l1next;
+			l1 = l1next;
+			l2 = l2next;
+		}	
 	}
+	Solution::printList(head);
 
+}
+
+void Solution::printList(ListNode *head){
+	while (head != NULL)
+	{
+		cout << head->val << endl;
+		head = head->next;
+	} 
 }
