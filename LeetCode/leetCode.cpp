@@ -155,28 +155,27 @@ ListNode *Solution::insertionSortListRecur(ListNode *head) {
 ListNode *Solution::insertionSortList_(ListNode *head){
 	if (head == NULL || head->next == NULL)
 		return head;
-	// head is the first element of resulting sorted list
+
 	ListNode  * head1 = NULL;
 	while (head != NULL) {
 		ListNode  * current = head;
 		head = head->next;
 		if (head1 == NULL || current->val < head1->val) {
-			// insert into the head of the sorted list
-			// or as the first element into an empty sorted list
+
 			current->next = head1;
 			head1 = current;
 		}
 		else {
-			// insert current element into proper position in non-empty sorted list
+
 			ListNode * p = head1;
 			while (p != NULL) {
-				if (p->next == NULL || // last element of the sorted list
-					current->val < p->next->val) // middle of the list
+				if (p->next == NULL || 
+					current->val < p->next->val) 
 				{
-					// insert into middle of the sorted list or as the last element
+					
 					current->next = p->next;
 					p->next = current;
-					break; // done
+					break; 
 				}
 				p = p->next;
 			}
@@ -186,15 +185,14 @@ ListNode *Solution::insertionSortList_(ListNode *head){
 
 	
 }
-/*---------reorderList----------------------
-本题思路如下：首先将题目所给单链表从中间分割为两个单链表，
-再将后半个单链表反向，最后合并两个单链表即可。*/
+/*---------reorderList---------------------*/
 void Solution::reorderList(ListNode *head) {
 	ListNode *fast = head, *slow = head;
 
-	//step1: split list to 2 sub list
-	if (head != NULL || head->next !=NULL){
-		while (fast != NULL && slow != NULL){
+	//step1: split list to 2 sub lists
+	if (head == NULL || head->next ==NULL)return;
+	else{
+		while(fast != NULL && fast->next !=NULL){
 			fast = fast->next->next;
 			slow = slow->next;
 		}
@@ -211,7 +209,7 @@ void Solution::reorderList(ListNode *head) {
 	//step3: connect first list with reversed list
 		ListNode  *l1 = head;
 		ListNode  *l2 = head_n;
-		while (l2 != NULL){ //maybe l2->next != NULL
+		while (l2->next != NULL){ //maybe l2->next != NULL
 			ListNode  *l1next = l1->next;
 			ListNode  *l2next = l2->next;
 			l1->next = l2;
