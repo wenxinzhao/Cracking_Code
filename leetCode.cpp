@@ -211,7 +211,7 @@ void Solution::reorderList(ListNode *head) {
 	//step3: connect first list with reversed list
 		ListNode  *l1 = head;
 		ListNode  *l2 = head_n;
-		while (l2 != NULL){
+		while (l2 != NULL){ //maybe l2->next != NULL
 			ListNode  *l1next = l1->next;
 			ListNode  *l2next = l2->next;
 			l1->next = l2;
