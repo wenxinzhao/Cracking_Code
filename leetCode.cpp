@@ -155,25 +155,21 @@ ListNode *Solution::insertionSortListRecur(ListNode *head) {
 ListNode *Solution::insertionSortList_(ListNode *head){
 	if (head == NULL || head->next == NULL)
 		return head;
-	// head is the first element of resulting sorted list
 	ListNode  * head1 = NULL;
 	while (head != NULL) {
 		ListNode  * current = head;
 		head = head->next;
 		if (head1 == NULL || current->val < head1->val) {
-			// insert into the head of the sorted list
-			// or as the first element into an empty sorted list
+
 			current->next = head1;
 			head1 = current;
 		}
 		else {
-			// insert current element into proper position in non-empty sorted list
 			ListNode * p = head1;
 			while (p != NULL) {
-				if (p->next == NULL || // last element of the sorted list
-					current->val < p->next->val) // middle of the list
+				if (p->next == NULL || 
+					current->val < p->next->val) 
 				{
-					// insert into middle of the sorted list or as the last element
 					current->next = p->next;
 					p->next = current;
 					break; // done
