@@ -14,6 +14,7 @@ void main(){
 	/*insert sort list*/
 	cout << "The head of sorted list is " 
 		<< sul.insertionSortList_(sul.initList(n, a))->val << endl;
+	sul.reorderList(sul.initList(n, a));
 
 	system("pause");
 
