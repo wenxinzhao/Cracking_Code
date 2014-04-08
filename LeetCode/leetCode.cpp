@@ -222,10 +222,38 @@ void Solution::reorderList(ListNode *head) {
 
 }
 
+/*Reverse a linked list from position m to n. Do it in-place and in one-pass.
+For example:
+Given 1->2->3->4->5->NULL, m = 2 and n = 4,
+return 1->4->3->2->5->NULL.*/
+
+ListNode *Solution::reverseBetween(ListNode *head, int m, int n) {
+	int i= 1;
+	ListNode *head_n = NULL;
+//step1: find sub list m to n
+	if (head == NULL || head->next ==NULL) return head;
+	else{
+		ListNode *node = head;
+		while(i <= n){
+			node = node ->next;
+			i++;
+			if( i == m )
+				head_n = node;
+		}
+
+	}
+//step2: reverse list 
+
+//step3: connect
+}
+
+
+//----------get result-------------------
 void Solution::printList(ListNode *head){
 	while (head != NULL)
 	{
-		cout << head->val << endl;
+		cout << head->val << " ";
 		head = head->next;
 	} 
+	cout << endl;
 }
