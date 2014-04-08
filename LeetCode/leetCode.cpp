@@ -229,7 +229,7 @@ return 1->4->3->2->5->NULL.*/
 
 ListNode *Solution::reverseBetween(ListNode *head, int m, int n) {
 	int i= 1;
-	ListNode *head_n = NULL;
+	ListNode *head_n = NULL, *temp = NULL;
 //step1: find sub list m to n
 	if (head == NULL || head->next ==NULL) return head;
 	else{
@@ -239,8 +239,11 @@ ListNode *Solution::reverseBetween(ListNode *head, int m, int n) {
 			i++;
 			if( i == m )
 				head_n = node;
-			if( i == n)
+			if( i == n){
+				temp = node->next;
 				node->next = NULL;
+
+			}
 		}
 
 	
@@ -255,9 +258,13 @@ ListNode *Solution::reverseBetween(ListNode *head, int m, int n) {
 
 //step3: connect
 		head->next = reverse;
-		
+		while(reverse->next !=NULL){
+			reverse = reverse->next;
+		}
+		reverse->next = temp;
 
 	}
+	return head;
 }
 
 
