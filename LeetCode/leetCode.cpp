@@ -234,17 +234,30 @@ ListNode *Solution::reverseBetween(ListNode *head, int m, int n) {
 	if (head == NULL || head->next ==NULL) return head;
 	else{
 		ListNode *node = head;
-		while(i <= n){
-			node = node ->next;
+		while(i < n){
+			node = node->next;
 			i++;
 			if( i == m )
 				head_n = node;
+			if( i == n)
+				node->next = NULL;
 		}
 
-	}
+	
 //step2: reverse list 
+		ListNode *reverse = NULL;
+		while (head_n != NULL){
+			ListNode  *current = head_n;
+			head_n = head_n->next;
+			current->next = reverse;
+			reverse = current;			
+		}
 
 //step3: connect
+		head->next = reverse;
+		
+
+	}
 }
 
 
