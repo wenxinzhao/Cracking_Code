@@ -31,6 +31,9 @@ public:
 	 
 	void reorderList(ListNode *head); 
 
+	//---------Reverse a linked list-------------
+	ListNode *Solution::reverseBetween(ListNode *head, int m, int n);
+
 	//-----print result----------------
 	void printList(ListNode *head);
 };
