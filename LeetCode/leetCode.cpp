@@ -1,6 +1,6 @@
 #include"leetCode.h"
 
-//----list initialization 1-------------
+//----list initialization 1--------------
 ListNode *Solution::initList(int n, int m, int a[]){
 	ListNode *head = NULL, *p = NULL, *q = NULL;
 	for (int i = 0; i < n; i++){
