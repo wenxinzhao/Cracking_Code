@@ -292,6 +292,103 @@ ListNode *Solution::reverseBetween(ListNode *head, int m, int n) {
 	
 }
 
+/*Given a sorted linked list, delete all duplicates such that each element appear only once.
+For example,
+Given 1->1->2, return 1->2.
+Given 1->1->2->3->3, return 1->2->3.*/
+
+ListNode *Solution::deleteDuplicates(ListNode *head) {
+	if (head == NULL || head->next == NULL)
+		return head;
+
+	else{
+		ListNode *node = head;
+		while (node->next != NULL){
+			ListNode *p = node->next;			
+			if (node->val == p->val){
+				node->next = p->next; 
+			}
+			else 
+				node = node->next;
+		}
+		return head;
+
+	}
+}
+
+/*Given a sorted linked list, delete all nodes that have duplicate numbers, 
+leaving only distinct numbers from the original list.
+For example,
+Given 1->2->3->3->4->4->5, return 1->2->5.
+Given 1->1->1->2->3, return 2->3.*/
+
+ListNode *Solution::deleteDuplicates_(ListNode *head){
+	if (head == NULL || head->next == NULL)
+		return head;
+	else if (head->val == head->next->val && head->next->next == NULL) return NULL;
+	else{
+		ListNode *node = head;		
+		while (node->next != NULL){
+			ListNode *p = node->next;
+			if (p->next == NULL) break;
+			if (node->val != p->val && p->val != p->next->val){
+				node = node->next;
+			}
+			else{
+				while (p->val == p->next->val){					
+					p = p->next;
+					if (p->next == NULL) break;
+				}
+				if (head->val == p->val)
+					head = p->next;								
+				node->next= p->next;
+			}
+
+		}
+		return head;		
+	}
+}
+/*Follow up for "Remove Duplicates":
+What if duplicates are allowed at most twice?
+For example, Given sorted array A = [1,1,1,2,2,3],
+Your function should return length = 5, and A is now [1,1,2,2,3].
+思路：
+遍历的时候记录重复的元素次数，如果重复则跳过。
+记录重复元素的方法可以用包含数值的Hash表或者两个BitMap。
+由于要保持输出数组的有序性，当非重复数值的时候我们尽量将数值前移。*/
+int Solution::removeDuplicates(int A[], int n) {
+	bitmap* exist = new bitmap(32767);
+	bitmap* duplicate = new bitmap(32767);
+
+	int count = 0;
+	int skip = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (duplicate->val(A[i]))
+		{
+			skip++;
+			count++;
+		}
+		else if (exist->val(A[i]))
+		{
+			duplicate->set(A[i]);
+			if (skip > 0)
+			{
+				A[i - skip] = A[i];
+			}
+		}
+		else
+		{
+			exist->set(A[i]);
+			if (skip > 0)
+			{
+				A[i - skip] = A[i];
+			}
+		}
+
+	}
+	return n - count;
+}
 
 //----------get result-------------------
 void Solution::printList(ListNode *head){
@@ -302,3 +399,90 @@ void Solution::printList(ListNode *head){
 	}
 	cout << endl;
 }
+
+
+//-------------Bit Map---------------------
+bitmap::bitmap(int n) {
+	len = n / 32 + 1;
+	map = new unsigned int[len];
+	reversemap = new unsigned int[len];
+
+
+	for (int i = 0; i < len; i++) {
+		map[i] = 0;
+		reversemap[i] = 0;
+		zero = false;
+	}
+}
+
+void bitmap::set(int k) {
+	bool reverse = true;
+	if (k == 0) {
+		zero = true;
+	}
+	else if (k < 0) {
+		reverse = false;
+		k = -k;
+	}
+	int a = k / 32;
+	int b = k % 32;
+
+
+	if (a >= len) {
+		return;
+	}
+	else {
+		if (reverse) {
+			int tmp = reversemap[a] / pow(2, b);
+			if (tmp % 2 == 0) {
+				reversemap[a] += pow(2, b);
+			}
+		}
+		else {
+			int tmp = map[a] / pow(2, b);
+			if (tmp % 2 == 0) {
+				map[a] += pow(2, b);
+			}
+		}
+	}
+}
+
+bool bitmap::val(int k) {
+	bool reverse = true;
+	if (k == 0) {
+		return zero;
+	}
+	else if (k < 0) {
+		reverse = false;
+		k = -k;
+	}
+	int a = k / 32;
+	int b = k % 32;
+
+
+	if (a >= len) {
+		return false;
+	}
+	else {
+		if (reverse) {
+			int tmp = reversemap[a] / pow(2, b);
+			if (tmp % 2 == 1) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			int tmp = map[a] / pow(2, b);
+			if (tmp % 2 == 1) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	}
+}
+//------------------------------------------
+
