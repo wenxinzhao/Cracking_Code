@@ -48,11 +48,12 @@ void getDepth(Node *head){
 bool isBalance(){
 	int i = 0;
 	int max = depth[i], min = depth[i];
-	while (depth[i] == 0){
+	while (depth[i] != 0){
 		if (depth[i] > max || depth[i] < 100){
 			max = depth[i];
 			min = depth[i];
 		}
+		i++;
 	}
 	if (max - min <= 1)
 		return true;
