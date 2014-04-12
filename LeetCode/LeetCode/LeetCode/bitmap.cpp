@@ -32,15 +32,15 @@ void bitmap::set(int k) {
 	}
 	else {
 		if (reverse) {
-			int tmp = reversemap[a] / pow(2, b);
+			int tmp = reversemap[a] / pow(2.0, b);
 			if (tmp % 2 == 0) {
-				reversemap[a] += pow(2, b);
+				reversemap[a] += pow(2.0, b);
 			}
 		}
 		else {
-			int tmp = map[a] / pow(2, b);
+			int tmp = map[a] / pow(2.0, b);
 			if (tmp % 2 == 0) {
-				map[a] += pow(2, b);
+				map[a] += pow(2.0, b);
 			}
 		}
 	}
@@ -64,7 +64,7 @@ bool bitmap::val(int k) {
 	}
 	else {
 		if (reverse) {
-			int tmp = reversemap[a] / pow(2, b);
+			int tmp = reversemap[a] / pow(2.0, b);
 			if (tmp % 2 == 1) {
 				return true;
 			}
@@ -73,7 +73,7 @@ bool bitmap::val(int k) {
 			}
 		}
 		else {
-			int tmp = map[a] / pow(2, b);
+			int tmp = map[a] / pow(2.0, b);
 			if (tmp % 2 == 1) {
 				return true;
 			}
