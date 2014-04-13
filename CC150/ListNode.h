@@ -30,5 +30,7 @@ public:
 	int printNodeAtLevel(TreeNode* &head, int level);
 	void printNodeAtLevel(TreeNode* head);
 	void printList(ListNode *head);
+	TreeNode* minimal(TreeNode *node);
+	TreeNode* successor(TreeNode *node);
 	
 };
