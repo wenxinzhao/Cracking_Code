@@ -1,4 +1,5 @@
 #include<vector>
+#include<stack>
 #include"ListNode.h"
 
 int cnt;
@@ -26,10 +27,14 @@ ListNode *Solution::initList(int n, int a[]){
 }
 
 ListNode *Solution::initList(vector<TreeNode*>vect, int cur, int last){
-	int cnt = last-cur;
+	int cnt = last - cur;
 	ListNode *head = NULL, *p = NULL, *q = NULL;
-
-	for(int i=0;i<cnt;i++){
+	/*while (cur != 0) {
+		vect.pop_back();
+		cur--;
+	}*/
+	//while (/*vect.size()>0*/cnt>0){
+	for (int i = 0; i < cnt;i++){
 		ListNode *nd = new ListNode(vect.back()->key);
 		vect.pop_back();
 		if (head == NULL){
@@ -38,7 +43,8 @@ ListNode *Solution::initList(vector<TreeNode*>vect, int cur, int last){
 		}
 		p->next = nd;
 		p = nd;
-	}
+		//cnt--;
+	}	
 	return Solution::reverse(head);
 }
 
@@ -134,24 +140,99 @@ void Solution::printList(ListNode *head){
 	cout << endl;
 }
 
+/*Q4.6 Tree_Graph LCA(Lowest Common Ancestor) 
+可以从根结点开始，判断以当前结点为根的树中左右子树是不是包含我们要找的两个结点。
+如果两个结点都出现在它的左子树中，那最低的共同父结点也出现在它的左子树中。
+如果两个结点都出现在它的右子树中，那最低的共同父结点也出现在它的右子树中。
+如果两个结点一个出现在左子树中，一个出现在右子树中，那当前的结点就是最低的共同父结点 */
+TreeNode* Solution::common_ancestor(TreeNode* head, TreeNode* node1, TreeNode* node2){
+	if (head == NULL) 
+		return NULL;
+	if (head == node1 && head == node2) 
+		return head;
 
-TreeNode* Solution::minimal(TreeNode *node){
-	if(node==NULL) return NULL;
-	while(node->left != NULL){
-		node = node->left;
+	bool isNode1InLeft = Solution::isIn(head->left, node1);
+	bool isNode2InLeft = Solution::isIn(head->left, node2);
+	if (isNode1InLeft && isNode2InLeft){ // if in left sub tree
+		return Solution::common_ancestor(head->left, node1, node2);
 	}
-	return node;
+	else if (!isNode1InLeft && !isNode2InLeft){ //if in right sub tree
+		return Solution::common_ancestor(head->right, node1, node2);
+	}
+	else return head;
+
 }
 
-TreeNode* Solution::successor(TreeNode *node){
-	if(node == NULL) return NULL;
-	if(node->right != NULL) Solution::minimal(node->right);
-	else{
-		TreeNode *tmp = node->parent;
-		while(tmp->key < node->key){
-			tmp = tmp->parent;
-		}
-		return tmp;
-	}
+bool Solution::isIn(TreeNode* head, TreeNode* node){
+	if (head == NULL)
+		return false;
+	if (head == node)
+		return head;
+	return Solution::isIn(head->left, node) || isIn(head->right, node);
+	
 
+}
+
+void Solution::postOrder(TreeNode* head){
+	if (head->left == NULL && head->right == NULL){
+		cout << head->key << " ";
+		return;
+	}		
+	Solution::postOrder(head->left);	
+	Solution::postOrder(head->right);	
+	cout << head->key << " ";
+}
+
+void Solution::inOrder(TreeNode* head){
+	if (head->left == NULL && head->right == NULL){
+		cout << head->key << " ";
+		return;
+	}
+	Solution::inOrder(head->left);
+	cout << head->key << " ";
+	Solution::inOrder(head->right);
+	
+}
+
+void Solution::preOrder(TreeNode* head){
+	cout << head->key << " ";
+	if (head->left == NULL && head->right == NULL){
+		//cout << head->key << " ";
+		return;
+	}
+	Solution::preOrder(head->left);	
+	Solution::preOrder(head->right);
+}
+
+/* Q4.9
+You are given a binary tree in which each node contains a value.
+Design an algorithm to print all paths which sum up to that value.
+Note that it can be any path in the tree - it does not have to start at the root.
+思路： 从head开始遍历树，每到一个节点往上去累加，加到SUM就打印path*/
+void Solution::find_sum(TreeNode* head, int sum){
+	if (head == NULL) return;
+	int sum_ = head->key;
+	TreeNode *node_ = head;
+	if (sum == sum_) cout << head->key << endl;
+	else {
+		ListNode *list = NULL, *p= new ListNode(node_->key);
+
+		while (node_->parent != NULL && sum != sum_){
+			sum_ += node_->parent->key;	
+			ListNode *nd = new ListNode(node_->parent->key);
+			if (list == NULL){//for how to make a list, don't forget!!!
+				list = p;
+			}				
+			p->next = nd;
+			p = nd; 
+
+			node_ = node_->parent;
+			
+		}
+		if (sum == sum_)
+			//cout << head->key << endl;
+			Solution::printList(list);
+	}
+	find_sum(head->left, sum);
+	find_sum(head->right, sum);	
 }
