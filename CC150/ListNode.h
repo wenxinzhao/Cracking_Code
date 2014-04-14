@@ -36,4 +36,6 @@ public:
 	void inOrder(TreeNode* head);
 	void preOrder(TreeNode* head);
 	void find_sum(TreeNode* head, int sum);
+	TreeNode* minimal(TreeNode *node);
+	TreeNode* successor(TreeNode *node);
 };
