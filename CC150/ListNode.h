@@ -18,7 +18,7 @@ struct TreeNode{
 class Solution {
 public:
 	TreeNode tree[maxn];
-	TreeNode *p , *head ;
+	TreeNode *p = NULL, *head = NULL;
 	ListNode* initList(int n, int a[]);
 	ListNode* initList(vector<TreeNode*>vect, int cur, int last);
 	ListNode* reverse(ListNode *head);
@@ -30,7 +30,10 @@ public:
 	int printNodeAtLevel(TreeNode* &head, int level);
 	void printNodeAtLevel(TreeNode* head);
 	void printList(ListNode *head);
-	TreeNode* minimal(TreeNode *node);
-	TreeNode* successor(TreeNode *node);
-	
+	TreeNode* common_ancestor(TreeNode *head, TreeNode* node1, TreeNode* node2);
+	bool isIn(TreeNode *head, TreeNode* node);
+	void postOrder(TreeNode* head); 
+	void inOrder(TreeNode* head);
+	void preOrder(TreeNode* head);
+	void find_sum(TreeNode* head, int sum);
 };
