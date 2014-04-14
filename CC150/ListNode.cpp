@@ -204,6 +204,27 @@ void Solution::preOrder(TreeNode* head){
 	Solution::preOrder(head->right);
 }
 
+TreeNode* Solution::minimal(TreeNode *node){
+	if (node == NULL) return NULL;
+	while (node->left != NULL){
+		node = node->left;
+	}
+	return node;
+}
+
+TreeNode* Solution::successor(TreeNode *node){
+	if (node == NULL) return NULL;
+	if (node->right != NULL) Solution::minimal(node->right);
+	else{
+		TreeNode *tmp = node->parent;
+		while (tmp->key < node->key){
+			tmp = tmp->parent;
+		}
+		return tmp;
+	}
+
+}
+
 /* Q4.9
 You are given a binary tree in which each node contains a value.
 Design an algorithm to print all paths which sum up to that value.
