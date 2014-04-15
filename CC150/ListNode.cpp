@@ -167,10 +167,8 @@ bool Solution::isIn(TreeNode* head, TreeNode* node){
 	if (head == NULL)
 		return false;
 	if (head == node)
-		return head;
+		return true;
 	return Solution::isIn(head->left, node) || isIn(head->right, node);
-	
-
 }
 
 void Solution::postOrder(TreeNode* head){
@@ -241,14 +239,11 @@ void Solution::find_sum(TreeNode* head, int sum){
 		while (node_->parent != NULL && sum != sum_){
 			sum_ += node_->parent->key;	
 			ListNode *nd = new ListNode(node_->parent->key);
-			if (list == NULL){//for how to make a list, don't forget!!!
-				list = p;
-			}				
+			if (list == NULL) //for how to create a list, don't forget!!!
+				list = p;				
 			p->next = nd;
-			p = nd; 
-
-			node_ = node_->parent;
-			
+			p = nd; //end
+			node_ = node_->parent;			
 		}
 		if (sum == sum_)
 			//cout << head->key << endl;
@@ -256,4 +251,36 @@ void Solution::find_sum(TreeNode* head, int sum){
 	}
 	find_sum(head->left, sum);
 	find_sum(head->right, sum);	
+}
+
+/*You have two very large binary trees: 
+T1, with millions of nodes, and T2, with hundreds of nodes. 
+Create an algorithm to decide if T2 is a subtree of T1*/
+bool Solution::identical_subtree(TreeNode *head1, TreeNode *head2){
+	if (head1 == NULL || head2 == NULL)
+		return false;
+	TreeNode *nd = searchIn(head1, head2);
+	if (nd == NULL)
+		return false;
+	else
+		return matchTree(nd->left, head2->left) && matchTree(nd->right, head2->right);
+
+}
+
+TreeNode *Solution::searchIn(TreeNode* head, TreeNode* node){
+	if (head == NULL)
+		return NULL;
+	if (head->key == node->key){
+		return head;
+	}		
+	searchIn(head->left, node); 
+	searchIn(head->right, node);
+}
+
+bool Solution::matchTree(TreeNode* nd, TreeNode* node){
+	if (nd != NULL && node != NULL){
+		if (nd->key != node->key)
+			return false;
+		return matchTree(nd->left, node->left) && matchTree(nd->right, node->right);
+	}
 }
