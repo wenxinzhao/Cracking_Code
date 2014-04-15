@@ -38,4 +38,7 @@ public:
 	void find_sum(TreeNode* head, int sum);
 	TreeNode* minimal(TreeNode *node);
 	TreeNode* successor(TreeNode *node);
+	bool identical_subtree(TreeNode *head1, TreeNode *head2);
+	TreeNode* searchIn(TreeNode *head, TreeNode* node);
+	bool matchTree(TreeNode* nd, TreeNode* node);
 };
