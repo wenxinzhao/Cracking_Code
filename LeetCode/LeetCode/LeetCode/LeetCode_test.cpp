@@ -7,8 +7,8 @@ Solution sul;
 //-----------main function-------------
 void main(){
 	//int a[] = { 3, 7, 4,9 ,5, 2, 6, 1  };
-	int a[] = { 1, 2,3,3,4,4,5};
-	int n = 7,m = 1, c = 2;
+	int a[] = { 1, 2,3,4,5};
+	int n = 5,m = 1, c = 2;
 	/*detect cycle in the list*/
 	int value = sul.detectCycle(sul.initList(n, m, a))->val;
 	cout << "The cycle begin with "
@@ -37,5 +37,8 @@ void main(){
 	cout << endl;
 	cout << "the total number is: " << n << endl;
 
+	// Tree traverse
+	//sul.createTree(sul.root, sul.p, a, 0, 4);
+	sul.levelOrderBottom(sul.createTree(sul.root, sul.p, a, 0, 4));
 	system("pause");
 }
