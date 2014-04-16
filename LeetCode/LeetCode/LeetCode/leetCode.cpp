@@ -1,5 +1,10 @@
 #include"leetCode.h"
 #include"bitmap.h"
+
+int cnt;
+int d = 0, depth[maxn], num = 0;
+
+
 //----list initialization 1-------------
 ListNode *Solution::initList(int n, int m, int a[]){
 	ListNode *head = NULL, *p = NULL, *q = NULL;
@@ -352,10 +357,10 @@ ListNode *Solution::deleteDuplicates_(ListNode *head){
 What if duplicates are allowed at most twice?
 For example, Given sorted array A = [1,1,1,2,2,3],
 Your function should return length = 5, and A is now [1,1,2,2,3].
-Ë¼Â·£º
-±éÀúµÄÊ±ºò¼ÇÂ¼ÖØ¸´µÄÔªËØ´ÎÊı£¬Èç¹ûÖØ¸´ÔòÌø¹ı¡£
-¼ÇÂ¼ÖØ¸´ÔªËØµÄ·½·¨¿ÉÒÔÓÃ°üº¬ÊıÖµµÄHash±í»òÕßÁ½¸öBitMap¡£
-ÓÉÓÚÒª±£³ÖÊä³öÊı×éµÄÓĞĞòĞÔ£¬µ±·ÇÖØ¸´ÊıÖµµÄÊ±ºòÎÒÃÇ¾¡Á¿½«ÊıÖµÇ°ÒÆ¡£*/
+æ€è·¯ï¼š
+éå†çš„æ—¶å€™è®°å½•é‡å¤çš„å…ƒç´ æ¬¡æ•°ï¼Œå¦‚æœé‡å¤åˆ™è·³è¿‡ã€‚
+è®°å½•é‡å¤å…ƒç´ çš„æ–¹æ³•å¯ä»¥ç”¨åŒ…å«æ•°å€¼çš„Hashè¡¨æˆ–è€…ä¸¤ä¸ªBitMapã€‚
+ç”±äºè¦ä¿æŒè¾“å‡ºæ•°ç»„çš„æœ‰åºæ€§ï¼Œå½“éé‡å¤æ•°å€¼çš„æ—¶å€™æˆ‘ä»¬å°½é‡å°†æ•°å€¼å‰ç§»ã€‚*/
 int Solution::removeDuplicates(int A[], int n) {
 	bitmap* exist = new bitmap(32767);
 	bitmap* duplicate = new bitmap(32767);
@@ -428,5 +433,90 @@ void Solution::printList(ListNode *head){
 }
 
 
+//------------Binary Tree--------------------------
+TreeNode *Solution::createTree(TreeNode* &head, TreeNode *pp, int *a, int start, int end){
+	if (start <= end){
+		int mid = (start + end) >> 1;
+		head = new TreeNode(a[mid]);
+		createTree(head->left, head, a, start, mid-1);
+		createTree(head->right, head, a, mid + 1, end);
+	}
+	return head;
+}
+		
+/*Given a binary tree, return the level order traversal of its nodes' values. 
+(ie, from left to right, level by level).44 ms*/
+vector<vector<int> >  Solution::levelOrder(TreeNode *root) {
+	vector<vector<int> > v;
+	if (root == NULL)
+		return v;
+	vector<TreeNode*>vec;
 
+	vec.push_back(root);
+	int cur = 0;
+	int last = 1;
+	while (cur < vec.size()){
+		last = vec.size();
+		int start = cur;
+		int end = last;
+		vector<int> sub_v;
+		while (start < end){			
+			sub_v.push_back(vec[start]->val);			
+			start++;
+		}
+		v.push_back(sub_v);
+		
+
+		while (cur < last){
+			if (vec[cur]->left != NULL)
+				vec.push_back(vec[cur]->left);
+			if (vec[cur]->right != NULL)
+				vec.push_back(vec[cur]->right);
+			cur++;
+		}
+	}
+
+	return v;
+}
+
+/*Binary Tree Level Order Traversal II Total 
+Given a binary tree, return the bottom-up level order traversal of its nodes' values. 
+(ie, from left to right, level by level from leaf to root). 56 ms */
+vector<vector<int> > Solution::levelOrderBottom(TreeNode *root) {
+	vector<vector<int> > v;
+	if (root == NULL)
+		return v;
+	vector<TreeNode*>vec;
+
+	vec.push_back(root);
+	int cur = 0;
+	int last = 1;
+	while (cur < vec.size()){
+		last = vec.size();
+		//save in sub_v
+		int start = cur;
+		int end = last;
+		vector<int> sub_v;
+		while (start < end){
+			sub_v.push_back(vec[start]->val);
+			start++;
+		}
+		//save in v
+		v.push_back(sub_v);
+
+
+		while (cur < last){
+			if (vec[cur]->left != NULL)
+				vec.push_back(vec[cur]->left);
+			if (vec[cur]->right != NULL)
+				vec.push_back(vec[cur]->right);
+			cur++;
+		}
+	}
+	//reverse vector v to res
+	vector<vector<int>> res;
+	for (int i = 0; i<v.size(); i++)
+		res.push_back(v[(int)v.size() - i - 1]);
+	return res;
+}
 
