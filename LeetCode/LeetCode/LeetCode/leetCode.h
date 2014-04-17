@@ -69,5 +69,10 @@ public:
 	//--Binary Tree Level Order Traversal--
 	vector<vector<int> > levelOrder(TreeNode *root);
 	vector<vector<int> > levelOrderBottom(TreeNode *root);
+	
+	/*Binary Tree Preorder Traversal */
+	vector<int> preorderTraversal(TreeNode *root);
+	/*Postorder Traversal */
+	vector<int> postorderTraversal(TreeNode *root);
 };
 
