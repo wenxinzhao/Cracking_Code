@@ -520,3 +520,67 @@ vector<vector<int> > Solution::levelOrderBottom(TreeNode *root) {
 	return res;
 }
 
+
+/*Binary Tree Preorder Traversal 
+Recursive solution is trivial, do it iteratively. 8 ms*/
+vector<int> Solution::preorderTraversal(TreeNode *root) {
+	//---------iterative--------------
+	vector<int> v;
+	if (root == NULL)
+		return v;
+	vector<TreeNode*> vec;
+	vec.push_back(root);
+	while ( vec.size() > 0){
+		TreeNode *nd = vec.back();
+		vec.pop_back();
+		v.push_back(nd->val);
+		if (nd->right != NULL)
+			vec.push_back(nd->right);
+		if (nd->left != NULL)
+			vec.push_back(nd->left);
+	}
+	return v;
+
+
+	//-------recursive-----------------------
+	/*cout << root->val << " ";
+	vector<int> v;
+	v.push_back(root->val);
+	if (root->left == NULL && root->right != NULL){
+		v.push_back(root->right->val);
+		cout << root->right->val << " ";
+		return v;
+	}
+	if (root->left != NULL && root->right == NULL){
+		v.push_back(root->left->val);
+		cout << root->left->val << " ";
+		return v;
+	}
+	preorderTraversal(root->left);
+	preorderTraversal(root->right);*/
+}
+
+
+/*Postorder Traversal  8 ms*/
+vector<int> Solution::postorderTraversal(TreeNode *root) {
+	vector<int> v;
+	if (root == NULL)
+		return v;
+	vector<TreeNode*> vec1,vec2;
+	vec1.push_back(root);
+	while (vec1.size() > 0){
+		TreeNode *nd = vec1.back();
+		vec2.push_back(nd);
+		vec1.pop_back();
+		if (nd->left != NULL)
+			vec1.push_back(nd->left);
+		if (nd->right != NULL)
+			vec1.push_back(nd->right);
+	}
+	while (vec2.size() > 0){
+		v.push_back(vec2.back()->val);
+		vec2.pop_back();
+	}
+	return v;
+	
+}
