@@ -520,7 +520,6 @@ vector<vector<int> > Solution::levelOrderBottom(TreeNode *root) {
 	return res;
 }
 
-
 /*Binary Tree Preorder Traversal 
 Recursive solution is trivial, do it iteratively. 8 ms*/
 vector<int> Solution::preorderTraversal(TreeNode *root) {
@@ -561,7 +560,12 @@ vector<int> Solution::preorderTraversal(TreeNode *root) {
 }
 
 
-/*Postorder Traversal  8 ms*/
+/*Postorder Traversal:
+1. Push root to first stack.
+2. Loop while first stack is not empty
+	2.1 Pop a node from first stack and push it to second stack
+	2.2 Push left and right children of the popped node to first stack
+3. Print contents of second stack  8 ms*/
 vector<int> Solution::postorderTraversal(TreeNode *root) {
 	vector<int> v;
 	if (root == NULL)
@@ -584,3 +588,139 @@ vector<int> Solution::postorderTraversal(TreeNode *root) {
 	return v;
 	
 }
+
+/*设计一个函数可以返回树的每条路径的波幅。所谓波幅就是路径上所有节点的值的最大差值。
+要求复杂度为O（N）。我用了recursion，遍历左右两边子树，把每次的结果存在static vector里，最后找出答案。*/
+void Solution::calPath(TreeNode* root){
+	vector<TreeNode*>vec1, vec2;
+	if (root == NULL)
+		return;	
+	TreeNode *nd = root;
+	vec1.push_back(nd);
+	while (vec1.size()>0){
+		nd = vec1.back();
+		vec2.push_back(nd);
+		vec1.pop_back();
+		if (nd->right != NULL)
+			vec1.push_back(nd->right);
+		if (nd->left != NULL)
+			vec1.push_back(nd->left);
+		if (nd->right == NULL && nd->left == NULL){
+			printVec(vec2);		
+			TreeNode *tmp = vec2.back();
+			vec2.pop_back();
+			if (vec2.back()->right == tmp)//如果pop出的元素是栈顶元素的右儿子，则pop该元素
+				vec2.pop_back();
+			if (vec2.back()->right == NULL &&vec2.back()->left == tmp)//如果pop出的元素是栈顶元素的左儿子且右儿子为空，则pop该元素
+				vec2.pop_back();
+		}
+	}
+}
+
+void Solution::printVec(vector<TreeNode*> vec){
+	while (vec.size() > 0){
+		cout << vec.back()->val<<" ";
+		vec.pop_back();
+	}
+	cout << endl;
+}
+
+
+/*shuffle问题。A B C D四个整数，怎样排列可以使得abs(s1-s2)+abs(s2-s3)+abs(s3-s4)的值最小。
+s1-s4是重新排列后的整数。要求O（1）复杂度。我用了vector存了abcd，然后sort（），
+每次取vector最大和最小值，按序存到新vector里面。*/
+
+/*Binary Tree Maximum Path Sum
+Given a binary tree, find the maximum path sum.
+The path may start and end at any node in the tree.
+Thoughts:1) Recursively solve this problem
+基本的思路就是，在递归中计算包含该root的最大值并更新至max[0]
+包含该root的最大值有如下几种可能：1.root本身；2.root和左子树中一条路径；
+3.root和右子树中一条路径；4.左子树一条路径和root和右子树一条路径。其中取最大就可更新至max[0]
+其中1，2，3可用来计算上一级的root的最大值，所以要传回去。
+最终，对于最上层的root来说，数内的最大路径不一定要经过根，但由于每个节点都遍历到，其最大值已经存在max[0]里面了。140 ms*/
+int Solution::maxPathSum(TreeNode *root) {
+	int sum = INT_MIN+10000;
+	findMaxSum(root, sum);
+	return sum;
+}
+/*每次更新一个节点，分为local maximum (max_sum) and global maximum(max_global),
+local不需要考虑parent节点，所以需要把三数之和进行比较，global需要连接parent节点，因此不能把三个数加和*/
+int Solution::findMaxSum(TreeNode* root, int& max_sum){ 
+	if (root == NULL) return INT_MIN+10000;
+	if (root->right == NULL && root->left == NULL){
+		max_sum = max(max_sum,root->val);
+		return root->val;		
+	}		
+	int a = findMaxSum(root->left, max_sum);
+	int b = findMaxSum(root->right, max_sum);	
+	int max_global = max3(root->val+a, root->val+b,root->val);	
+	max_sum = max3(max_global, max_sum,root->val+a+b);
+	return max_global;	
+}
+
+int Solution::max(int a, int b){
+	return (((a) >(b)) ? (a) : (b));
+}
+
+int Solution::max3(int a, int b,int c){
+	return (a > b ? (a > c ? a : c) : (b > c ? b : c));
+}
+
+//-----level order create tree-----------
+TreeNode* Solution::CreateBitree(TreeNode *pNode, int *a){
+		int END_OF_TREE = '#';
+		int END_OF_MAX = -858993460;
+		int i = 0;
+		pNode = new TreeNode(a[i]);
+		queue <TreeNode*> q;
+		q.push(pNode);
+		while (q.size() > 0 && i <= iter){
+			TreeNode* nd = q.front();
+			q.pop();
+			if (a[i + 1] == END_OF_TREE || a[i + 1] == END_OF_MAX)
+				nd->left = NULL;
+			else{
+				nd->left = new TreeNode(a[i + 1]);
+				q.push(nd->left);
+			}
+
+			if (a[i + 2] == END_OF_TREE || a[i + 2] == END_OF_MAX)//need to change 
+				nd->right = NULL;
+			else{
+				nd->right = new TreeNode(a[i + 2]);
+				q.push(nd->right);
+			}
+
+			i = i + 2;
+		}
+		return pNode;
+	}
+
+
+
+/*int Solution::findMaxSum(TreeNode* root, int& max_sum){
+	if (root == NULL){
+		return INT_MIN;
+	}
+	if (root->left == NULL && root->right == NULL){
+		max_sum = max_sum < root->val ? root->val : max_sum;
+		return root->val;
+	}
+
+	int leftMax = findMaxSum(root->left, max_sum);
+	int rightMax = findMaxSum(root->right, max_sum);
+	int childMax = max(leftMax, rightMax);
+	int whole = root->val;
+	if (root->left) whole += leftMax;
+	if (root->right) whole += rightMax;
+	max_sum = max(max(root->val, childMax + root->val), max(whole, max_sum));
+	//return value:
+	int ret = max(root->val, root->val + childMax);
+	return ret;
+}
+int Solution::maxPathSum(TreeNode *root) {
+	int max_sum = INT_MIN;
+	findMaxSum(root, max_sum);
+	return max_sum;
+}*/
