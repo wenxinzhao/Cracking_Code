@@ -1,6 +1,11 @@
 #include<iostream>
+#include<fstream>
 #include<vector>
+#include<queue>
 using namespace std;
+//#define max(a, b)  (((a) > (b)) ? (a) : (b))
+#define min(a, b)	(a < b ? a : b)
+//#define max3(a, b,c)  (a>b ? (a>c ? a : c) : (b>c ? b : c))
 
 const int maxn = 100;
 
@@ -22,6 +27,10 @@ public:
 	//-----------parameter-------------------	
 	TreeNode *p = NULL, *root = NULL;
 	int i;
+	int iter;
+	Solution(){
+		iter = 0;
+	}
 
 	/*--------------------------------------------------*/
 	/*------------------Link List-----------------------*/
@@ -66,13 +75,30 @@ public:
 	/*------------------Binary Tree-----------------------*/
 	/*----------------------------------------------------*/
 	TreeNode* createTree(TreeNode* &head, TreeNode *pp, int *a, int start, int end);
+
 	//--Binary Tree Level Order Traversal--
 	vector<vector<int> > levelOrder(TreeNode *root);
 	vector<vector<int> > levelOrderBottom(TreeNode *root);
-	
 	/*Binary Tree Preorder Traversal */
 	vector<int> preorderTraversal(TreeNode *root);
 	/*Postorder Traversal */
 	vector<int> postorderTraversal(TreeNode *root);
+	/*print path*/
+	void calPath(TreeNode *root);
+	void printVec(vector<TreeNode*> vec);
+
+	/*Binary Tree Maximum Path Sum*/
+	int maxPathSum(TreeNode *root);
+	int findMaxSum(TreeNode* root, int& max_sum);
+	int max(int a, int b);
+	int max3(int a, int b,int c);
+	TreeNode* CreateBitree(TreeNode *pNode, int *a); //level order create tree
+
+	int pathAmplitude(TreeNode *root);
+	int findAmplitude(TreeNode* root, int& path);
+	int calcAbs(int a, int b, int c);
+	int calcAbs(int a, int b);
+	
+
 };
 
