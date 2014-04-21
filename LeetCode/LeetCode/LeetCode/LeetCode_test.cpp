@@ -52,6 +52,7 @@ void main(){
 	sul.iter = 9986;
 	pRoot = sul.CreateBitree(pRoot, tree);
 	cout << "the max path sum is:" << sul.maxPathSum(pRoot) << endl;
+	cout << "the max path amptitude is:" << sul.pathAmplitude(pRoot) << endl;
 	system("pause");
 }
 
