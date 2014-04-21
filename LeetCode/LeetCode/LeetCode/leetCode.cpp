@@ -724,3 +724,42 @@ int Solution::maxPathSum(TreeNode *root) {
 	findMaxSum(root, max_sum);
 	return max_sum;
 }*/
+
+int Solution::pathAmplitude(TreeNode *root){
+	int pathLength = INT_MIN + 10000;
+	findAmplitude(root, pathLength);
+	return abs(pathLength);
+}
+int Solution::findAmplitude(TreeNode* root, int& path){
+	if (root == NULL) return INT_MIN + 10000;
+	if (root->right == NULL && root->left == NULL){
+		path = 0;
+		return root->val;
+	}
+	int a = findAmplitude(root->left, path);
+	int b = findAmplitude(root->right, path);	
+	int max_global;//global respect 2 value
+	if (abs(calcAbs(root->val, a)) > abs(calcAbs(root->val, b)))
+		max_global = calcAbs(root->val, a);
+	else 
+		max_global = calcAbs(root->val, b);
+
+	path = max3(abs(max_global), path, abs(calcAbs(root->val,a,b) ));//local respect 3 value
+	return max_global;	
+}
+int Solution::calcAbs(int a, int b, int c){
+	int x = min(a, min(b,c));
+	int y = max3(a, b, c);
+	if (x < 0)
+		return x - y;
+	else
+		return y - x;
+}
+int Solution::calcAbs(int a, int b){
+	int x = min(a, b);
+	int y = max(a, b);
+	if (x < 0)
+		return x - y;//if two negative value?
+	else
+		return y - x;
+}
