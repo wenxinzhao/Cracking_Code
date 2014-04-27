@@ -1,6 +1,7 @@
-#include<iostream>
-#include<fstream>
-#include<queue>
+#include <iostream>
+#include <fstream>
+#include <queue>
+#include <algorithm> 
 using namespace std;
 
 
@@ -82,6 +83,10 @@ int maxProfit2(vector<int> &prices) {
     }
     return max;
 }
+struct myclass {
+  bool operator() (int i,int j) { return (i<j);}
+} myobject;
+
 int maxProfit3(vector<int> &prices) {
     if(prices.size() == 0 || prices.size() == 1)
     	return 0; 
@@ -91,46 +96,39 @@ int maxProfit3(vector<int> &prices) {
     int max = 0;
     std::vector<int> vm;
     int m = 0;
+//3,2,6,5,0,3
+//-1,4,-1, -5,3
+
     for(int i = 0; i < prices.size()-1; i++){
-    	int max_pre = max;
-    	if(profit[i]>0)
-    		max += profit[i];
-    	if(max_pre> max){
 
-    		vm.push_back(max_pre);
-			max = 0;
-    		
-    	}
-
-    }
-    int tmp = vm.back();
-    int max_value = tmp;
-    while(vm.size()>0){
     	
-
-    	vm.pop_back();
-    	tmp = vm.back();
-    	if(max_value<tmp)
-    		max_value = tmp;
+    	if(profit[i]>0){
+    		max += profit[i];
+    	}
+    	if(profit[i]<0 || i == prices.size()-2){
+    		vm.push_back(max);
+    		max = 0;
+    	}
     }
-    return max_value;
+
+    std::sort (vm.begin(), vm.end(), myobject);
+    int max_ = vm.back();
+    vm.pop_back();
+    return max_+vm.back();
 
 }
 
-void main(){
-		fstream fin("tree.txt");
-		int tree[] = {1, 2, 3, '#', '#', 4, '#', '#', 5 };
-		TreeNode *pRoot = NULL;
-		pRoot = CreateBitree(pRoot, fin);
-		cout<<pRoot->val<<endl;
+int main(){
 
-		int price[] = {3,2,6,5,0,3};
+
+		int price[] = {-3,2,6,5,9,3};
 		vector<int> prices;
 		for(int i = 0; i<6;i++)
 			prices.push_back(price[i]);
 
 		cout<<maxProfit3(prices)<<endl;
-		system("pause");
+		return 0;
+		//ystem("pause");
 }
 
 
