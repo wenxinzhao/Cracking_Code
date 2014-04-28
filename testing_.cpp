@@ -118,6 +118,42 @@ int maxProfit3(vector<int> &prices) {
 
 }
 
+int maxProfit4(vector<int> &prices){
+	if(prices.size() <= 1)
+    	return 0; 
+	vector<int> subprice;
+
+	int lowest = prices[0];
+	int max = prices[0];
+	subprice.push_back(0);
+	for(int i= 0; i<prices.size();i++){
+		int profit = prices[i]-lowest;
+		if(profit> max)
+			max = profit;
+		subprice.push_back(max);
+		if(prices[i]<lowest)
+			lowest = prices[i];		
+	}
+
+	int ret = subprice[prices.size() - 1];
+    int max_2= 0;   
+	int lowest_2 = prices[prices.size()-1];
+	for(int i = prices.size()-2;i>=0; --i){
+		int profit_2 = lowest_2-prices[i];
+		if(profit_2>max_2)
+			max_2 = profit_2;
+		int final_profit = max_2+subprice[i];
+		if(final_profit>ret) 
+			ret = final_profit;
+		if(lowest_2>prices[i])
+			lowest_2  = prices[i];
+
+	}
+     
+        return ret;
+
+}
+
 int main(){
 
 
