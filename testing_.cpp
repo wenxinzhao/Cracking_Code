@@ -164,7 +164,7 @@ int main(){
 
 		cout<<maxProfit3(prices)<<endl;
 		return 0;
-		//ystem("pause");
+		//system("pause");
 }
 
 
