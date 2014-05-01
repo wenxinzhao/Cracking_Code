@@ -99,6 +99,8 @@ public:
 	int calcAbs(int a, int b, int c);
 	int calcAbs(int a, int b);
 	
+	int singleNumber2(int A[], int n);
+	
 
 };
 
