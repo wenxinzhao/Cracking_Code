@@ -763,3 +763,18 @@ int Solution::calcAbs(int a, int b){
 	else
 		return y - x;
 }
+
+
+int Solution::singleNumber2(int A[], int n) {
+	int one = 0;
+	int two = 0;
+	int three = 0;
+	for (int i = 0; i < n; i++){
+		two |= one & A[i];
+		one = one ^ A[i];		
+		three = ~(one&two);
+		one = one & three;
+		two = two & three;
+	}
+	return one;
+}
