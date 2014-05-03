@@ -156,7 +156,6 @@ int maxProfit4(vector<int> &prices){
 
 int main(){
 
-
 		int price[] = {-3,2,6,5,9,3};
 		vector<int> prices;
 		for(int i = 0; i<6;i++)
