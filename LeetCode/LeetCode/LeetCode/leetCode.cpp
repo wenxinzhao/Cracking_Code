@@ -778,3 +778,13 @@ int Solution::singleNumber2(int A[], int n) {
 	}
 	return one;
 }
+
+/*Given a binary tree, find its maximum depth.
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.*/
+int Solution::maxDepth(TreeNode *root) {
+	if (root == NULL)
+		return 0;
+	int nLeft = maxDepth(root->left);
+	int nRight = maxDepth(root->right);
+	return (nLeft > nRight) ? (nLeft + 1) : (nRight + 1);
+}
