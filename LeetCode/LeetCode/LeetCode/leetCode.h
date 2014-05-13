@@ -101,6 +101,7 @@ public:
 	
 	int singleNumber2(int A[], int n);
 	
-
+	
+	int maxDepth(TreeNode *root);
 };
 
