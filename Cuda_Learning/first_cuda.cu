@@ -153,7 +153,7 @@ int main()
     printf("sum (CPU): %d\n", final_sum);
 
 
-	getchar();
+    getchar();
     return 0;
 }
 
