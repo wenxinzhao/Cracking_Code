@@ -10,8 +10,7 @@ ifeq ($(blas),1)
  LDFLAGS= -lm -lcudart -lcublas -lcurand -lz `pkg-config --libs opencv` -lblas
  CFLAGS+= -DMSHADOW_USE_MKL=0 -DMSHADOW_USE_CBLAS=1
 else
- LDFLAGS= -L/usr/local/cuda-5.5/lib64 -L/opt/intel/mkl/lib/intel64 -L/opt/intel/lib/intel64 -lm -lcudart -lcublas -lmkl_core -lmkl_intel_lp64 -lmkl_intel_thread -liomp5 -lpthread -lcurand -lz `pkg-config --libs opencv`
- 
+ LDFLAGS= -L/lib/x86_64-linux-gnu -L/usr/local/cuda-5.5/lib64 -L/opt/intel/mkl/lib/intel64 -L/opt/intel/lib/intel64 -lm -lcudart -lcublas -lmkl_core -lmkl_intel_lp64 -lmkl_intel_thread -liomp5 -lpthread -lcurand -lz `pkg-config --libs opencv`
  # LDFLAGS = -lm /usr/local/cuda-5.5/lib64/libcudart.so.5.5.22 /usr/local/cuda-5.5/lib64/libcublas.so.5.5.22 /opt/intel/composer_xe_2013_sp1.0.080/mkl/lib/intel64/libmkl_core.so /opt/intel/composer_xe_2013_sp1.0.080/mkl/lib/intel64/libmkl_intel_lp64.so /opt/intel/composer_xe_2013_sp1.0.080/mkl/lib/intel64/libmkl_intel_thread.so  /opt/intel/lib/intel64/libiomp5.so -lpthread /usr/local/cuda-5.5/lib64/libcurand.so.5.5.22 -lz `pkg-config --libs opencv`
 endif
 
