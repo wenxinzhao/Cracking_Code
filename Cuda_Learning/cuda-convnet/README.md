@@ -8,7 +8,7 @@ This package contain
 * python codes for deep learning algorithms
 
 
-* https://code.google.com/p/cuda-convnet/
+* https://code.google.com/p/cuda-convnet/wiki/Methodology
 
 
 
