@@ -22,14 +22,23 @@ struct TreeNode {
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+struct TreeLinkNode {
+	int val;
+	TreeLinkNode *left, *right, *next;
+	TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}	
+};
+
+
 class Solution {
 public:
 	//-----------parameter-------------------	
-	TreeNode *p = NULL, *root = NULL;
+	TreeNode *p , *root ;
 	int i;
 	int iter;
 	Solution(){
 		iter = 0;
+		p = NULL;
+		root = NULL;
 	}
 
 	/*--------------------------------------------------*/
@@ -50,8 +59,8 @@ public:
 
 	ListNode *insertionSortList_(ListNode *head);
 
-	/*Given a singly linked list L: L0â†’L1â†’â€¦â†’Ln-1â†’Ln,
-	reorder it to: L0â†’Lnâ†’L1â†’Ln-1â†’L2â†’Ln-2â†’â€¦
+	/*Given a singly linked list L: L0¡úL1¡ú¡­¡úLn-1¡úLn,
+	reorder it to: L0¡úLn¡úL1¡úLn-1¡úL2¡úLn-2¡ú¡­
 	You must do this in-place without altering the nodes' values.
 	For example,Given {1,2,3,4}, reorder it to {1,4,2,3}.*/
 
@@ -98,10 +107,37 @@ public:
 	int findAmplitude(TreeNode* root, int& path);
 	int calcAbs(int a, int b, int c);
 	int calcAbs(int a, int b);
-	
+
+
+	int maxProfit1(vector<int> &prices);
+	int maxProfit2(vector<int> &prices); 
+	int maxProfit3(vector<int> &prices);
+
+	int singleNumber(int A[], int n);
 	int singleNumber2(int A[], int n);
-	
-	
 	int maxDepth(TreeNode *root);
+
+
+	bool isSameTree(TreeNode *p, TreeNode *q);
+	int reverse(int x);
+	int numTrees(int n);
+	vector<int> inorderTraversal(TreeNode *root);
+	int searchInsert(int A[], int n, int target);
+	TreeLinkNode *createLinkTree(TreeLinkNode* &head, TreeLinkNode *pp, int *a, int start, int end);
+	TreeLinkNode *connect(TreeLinkNode *root);
+	void *connect_recur(TreeLinkNode *root);
+
+	int romanToInt(string s);
+	string intToRoman(int num);
+	int digit(char s);
+	int maxSubArray(int A[], int n);
+	int maxArray(int A[], int start, int end, int n);
 };
 
+void show_result(vector<int>nums);
+void print(int i);
+int combinate(int n, int m);
+int permutate(int n, int m);
+unsigned long long fac(int n);
+int climbStairs(int n);
+int removeElement(int A[], int n, int elem);

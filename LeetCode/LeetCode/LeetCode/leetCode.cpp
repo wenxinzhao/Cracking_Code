@@ -1,5 +1,7 @@
 #include"leetCode.h"
 #include"bitmap.h"
+#include <string>
+#include <algorithm>
 
 int cnt;
 int d = 0, depth[maxn], num = 0;
@@ -81,7 +83,6 @@ int Solution::sortArray(int a[], int n){
 
 	}
 	return a[n - 1];
-
 }
 
 ListNode *Solution::insertionSortList(ListNode *head) {
@@ -357,10 +358,10 @@ ListNode *Solution::deleteDuplicates_(ListNode *head){
 What if duplicates are allowed at most twice?
 For example, Given sorted array A = [1,1,1,2,2,3],
 Your function should return length = 5, and A is now [1,1,2,2,3].
-æ€è·¯ï¼š
-éå†çš„æ—¶å€™è®°å½•é‡å¤çš„å…ƒç´ æ¬¡æ•°ï¼Œå¦‚æœé‡å¤åˆ™è·³è¿‡ã€‚
-è®°å½•é‡å¤å…ƒç´ çš„æ–¹æ³•å¯ä»¥ç”¨åŒ…å«æ•°å€¼çš„Hashè¡¨æˆ–è€…ä¸¤ä¸ªBitMapã€‚
-ç”±äºè¦ä¿æŒè¾“å‡ºæ•°ç»„çš„æœ‰åºæ€§ï¼Œå½“éé‡å¤æ•°å€¼çš„æ—¶å€™æˆ‘ä»¬å°½é‡å°†æ•°å€¼å‰ç§»ã€‚*/
+Ë¼Â·£º
+±éÀúµÄÊ±ºò¼ÇÂ¼ÖØ¸´µÄÔªËØ´ÎÊı£¬Èç¹ûÖØ¸´ÔòÌø¹ı¡£
+¼ÇÂ¼ÖØ¸´ÔªËØµÄ·½·¨¿ÉÒÔÓÃ°üº¬ÊıÖµµÄHash±í»òÕßÁ½¸öBitMap¡£
+ÓÉÓÚÒª±£³ÖÊä³öÊı×éµÄÓĞĞòĞÔ£¬µ±·ÇÖØ¸´ÊıÖµµÄÊ±ºòÎÒÃÇ¾¡Á¿½«ÊıÖµÇ°ÒÆ¡£*/
 int Solution::removeDuplicates(int A[], int n) {
 	bitmap* exist = new bitmap(32767);
 	bitmap* duplicate = new bitmap(32767);
@@ -466,7 +467,6 @@ vector<vector<int> >  Solution::levelOrder(TreeNode *root) {
 		}
 		v.push_back(sub_v);
 		
-
 		while (cur < last){
 			if (vec[cur]->left != NULL)
 				vec.push_back(vec[cur]->left);
@@ -559,7 +559,6 @@ vector<int> Solution::preorderTraversal(TreeNode *root) {
 	preorderTraversal(root->right);*/
 }
 
-
 /*Postorder Traversal:
 1. Push root to first stack.
 2. Loop while first stack is not empty
@@ -589,8 +588,6 @@ vector<int> Solution::postorderTraversal(TreeNode *root) {
 	
 }
 
-/*è®¾è®¡ä¸€ä¸ªå‡½æ•°å¯ä»¥è¿”å›æ ‘çš„æ¯æ¡è·¯å¾„çš„æ³¢å¹…ã€‚æ‰€è°“æ³¢å¹…å°±æ˜¯è·¯å¾„ä¸Šæ‰€æœ‰èŠ‚ç‚¹çš„å€¼çš„æœ€å¤§å·®å€¼ã€‚
-è¦æ±‚å¤æ‚åº¦ä¸ºOï¼ˆNï¼‰ã€‚æˆ‘ç”¨äº†recursionï¼Œéå†å·¦å³ä¸¤è¾¹å­æ ‘ï¼ŒæŠŠæ¯æ¬¡çš„ç»“æœå­˜åœ¨static vectoré‡Œï¼Œæœ€åæ‰¾å‡ºç­”æ¡ˆã€‚*/
 void Solution::calPath(TreeNode* root){
 	vector<TreeNode*>vec1, vec2;
 	if (root == NULL)
@@ -609,13 +606,14 @@ void Solution::calPath(TreeNode* root){
 			printVec(vec2);		
 			TreeNode *tmp = vec2.back();
 			vec2.pop_back();
-			if (vec2.back()->right == tmp)//å¦‚æœpopå‡ºçš„å…ƒç´ æ˜¯æ ˆé¡¶å…ƒç´ çš„å³å„¿å­ï¼Œåˆ™popè¯¥å…ƒç´ 
+			if (vec2.back()->right == tmp)//Èç¹ûpop³öµÄÔªËØÊÇÕ»¶¥ÔªËØµÄÓÒ¶ù×Ó£¬Ôòpop¸ÃÔªËØ
 				vec2.pop_back();
-			if (vec2.back()->right == NULL &&vec2.back()->left == tmp)//å¦‚æœpopå‡ºçš„å…ƒç´ æ˜¯æ ˆé¡¶å…ƒç´ çš„å·¦å„¿å­ä¸”å³å„¿å­ä¸ºç©ºï¼Œåˆ™popè¯¥å…ƒç´ 
+			if (vec2.back()->right == NULL &&vec2.back()->left == tmp)//Èç¹ûpop³öµÄÔªËØÊÇÕ»¶¥ÔªËØµÄ×ó¶ù×ÓÇÒÓÒ¶ù×ÓÎª¿Õ£¬Ôòpop¸ÃÔªËØ
 				vec2.pop_back();
 		}
 	}
 }
+
 
 void Solution::printVec(vector<TreeNode*> vec){
 	while (vec.size() > 0){
@@ -625,27 +623,22 @@ void Solution::printVec(vector<TreeNode*> vec){
 	cout << endl;
 }
 
-
-/*shuffleé—®é¢˜ã€‚A B C Då››ä¸ªæ•´æ•°ï¼Œæ€æ ·æ’åˆ—å¯ä»¥ä½¿å¾—abs(s1-s2)+abs(s2-s3)+abs(s3-s4)çš„å€¼æœ€å°ã€‚
-s1-s4æ˜¯é‡æ–°æ’åˆ—åçš„æ•´æ•°ã€‚è¦æ±‚Oï¼ˆ1ï¼‰å¤æ‚åº¦ã€‚æˆ‘ç”¨äº†vectorå­˜äº†abcdï¼Œç„¶åsortï¼ˆï¼‰ï¼Œ
-æ¯æ¬¡å–vectoræœ€å¤§å’Œæœ€å°å€¼ï¼ŒæŒ‰åºå­˜åˆ°æ–°vectoré‡Œé¢ã€‚*/
-
 /*Binary Tree Maximum Path Sum
 Given a binary tree, find the maximum path sum.
 The path may start and end at any node in the tree.
 Thoughts:1) Recursively solve this problem
-åŸºæœ¬çš„æ€è·¯å°±æ˜¯ï¼Œåœ¨é€’å½’ä¸­è®¡ç®—åŒ…å«è¯¥rootçš„æœ€å¤§å€¼å¹¶æ›´æ–°è‡³max[0]
-åŒ…å«è¯¥rootçš„æœ€å¤§å€¼æœ‰å¦‚ä¸‹å‡ ç§å¯èƒ½ï¼š1.rootæœ¬èº«ï¼›2.rootå’Œå·¦å­æ ‘ä¸­ä¸€æ¡è·¯å¾„ï¼›
-3.rootå’Œå³å­æ ‘ä¸­ä¸€æ¡è·¯å¾„ï¼›4.å·¦å­æ ‘ä¸€æ¡è·¯å¾„å’Œrootå’Œå³å­æ ‘ä¸€æ¡è·¯å¾„ã€‚å…¶ä¸­å–æœ€å¤§å°±å¯æ›´æ–°è‡³max[0]
-å…¶ä¸­1ï¼Œ2ï¼Œ3å¯ç”¨æ¥è®¡ç®—ä¸Šä¸€çº§çš„rootçš„æœ€å¤§å€¼ï¼Œæ‰€ä»¥è¦ä¼ å›å»ã€‚
-æœ€ç»ˆï¼Œå¯¹äºæœ€ä¸Šå±‚çš„rootæ¥è¯´ï¼Œæ•°å†…çš„æœ€å¤§è·¯å¾„ä¸ä¸€å®šè¦ç»è¿‡æ ¹ï¼Œä½†ç”±äºæ¯ä¸ªèŠ‚ç‚¹éƒ½éå†åˆ°ï¼Œå…¶æœ€å¤§å€¼å·²ç»å­˜åœ¨max[0]é‡Œé¢äº†ã€‚140 ms*/
+»ù±¾µÄË¼Â·¾ÍÊÇ£¬ÔÚµİ¹éÖĞ¼ÆËã°üº¬¸ÃrootµÄ×î´óÖµ²¢¸üĞÂÖÁmax[0]
+°üº¬¸ÃrootµÄ×î´óÖµÓĞÈçÏÂ¼¸ÖÖ¿ÉÄÜ£º1.root±¾Éí£»2.rootºÍ×ó×ÓÊ÷ÖĞÒ»ÌõÂ·¾¶£»
+3.rootºÍÓÒ×ÓÊ÷ÖĞÒ»ÌõÂ·¾¶£»4.×ó×ÓÊ÷Ò»ÌõÂ·¾¶ºÍrootºÍÓÒ×ÓÊ÷Ò»ÌõÂ·¾¶¡£ÆäÖĞÈ¡×î´ó¾Í¿É¸üĞÂÖÁmax[0]
+ÆäÖĞ1£¬2£¬3¿ÉÓÃÀ´¼ÆËãÉÏÒ»¼¶µÄrootµÄ×î´óÖµ£¬ËùÒÔÒª´«»ØÈ¥¡£
+×îÖÕ£¬¶ÔÓÚ×îÉÏ²ãµÄrootÀ´Ëµ£¬ÊıÄÚµÄ×î´óÂ·¾¶²»Ò»¶¨Òª¾­¹ı¸ù£¬µ«ÓÉÓÚÃ¿¸ö½Úµã¶¼±éÀúµ½£¬Æä×î´óÖµÒÑ¾­´æÔÚmax[0]ÀïÃæÁË¡£140 ms*/
 int Solution::maxPathSum(TreeNode *root) {
 	int sum = INT_MIN+10000;
 	findMaxSum(root, sum);
 	return sum;
 }
-/*æ¯æ¬¡æ›´æ–°ä¸€ä¸ªèŠ‚ç‚¹ï¼Œåˆ†ä¸ºlocal maximum (max_sum) and global maximum(max_global),
-localä¸éœ€è¦è€ƒè™‘parentèŠ‚ç‚¹ï¼Œæ‰€ä»¥éœ€è¦æŠŠä¸‰æ•°ä¹‹å’Œè¿›è¡Œæ¯”è¾ƒï¼Œglobaléœ€è¦è¿æ¥parentèŠ‚ç‚¹ï¼Œå› æ­¤ä¸èƒ½æŠŠä¸‰ä¸ªæ•°åŠ å’Œ*/
+/*Ã¿´Î¸üĞÂÒ»¸ö½Úµã£¬·ÖÎªlocal maximum (max_sum) and global maximum(max_global),
+local²»ĞèÒª¿¼ÂÇparent½Úµã£¬ËùÒÔĞèÒª°ÑÈıÊıÖ®ºÍ½øĞĞ±È½Ï£¬globalĞèÒªÁ¬½Óparent½Úµã£¬Òò´Ë²»ÄÜ°ÑÈı¸öÊı¼ÓºÍ*/
 int Solution::findMaxSum(TreeNode* root, int& max_sum){ 
 	if (root == NULL) return INT_MIN+10000;
 	if (root->right == NULL && root->left == NULL){
@@ -697,8 +690,6 @@ TreeNode* Solution::CreateBitree(TreeNode *pNode, int *a){
 		return pNode;
 	}
 
-
-
 /*int Solution::findMaxSum(TreeNode* root, int& max_sum){
 	if (root == NULL){
 		return INT_MIN;
@@ -725,25 +716,40 @@ int Solution::maxPathSum(TreeNode *root) {
 	return max_sum;
 }*/
 
+/*G&T 1. LCÉÏÃæµÄÒ»¸ö¹ØÓÚÊı×Ö¾ØÕóµÄÌâÄ¿
+2. ³¬¼¶prime ¶¨ÒåÎªËùÓĞÇ°×ºÊÇprimeµÄÊı£¬ ±ÈÈç239 (2 , 23, 239 are all prime numbers) ,given N ´òÓ¡ËùÓĞ³¤¶ÈÎªNµÄ³¬¼¶prime 
+3. iterator ÊµÏÖnext hasnext£¬flatten list½»ÌæÊä³ö [[7 8 9]  []  [2 3 5] [1 19]] --->   7 2 1 8 3 19 9 5
+@A  shuffleÎÊÌâ¡£A B C DËÄ¸öÕûÊı£¬ÔõÑùÅÅÁĞ¿ÉÒÔÊ¹µÃabs(s1-s2)+abs(s2-s3)+abs(s3-s4)µÄÖµ×îĞ¡¡£
+s1-s4ÊÇÖØĞÂÅÅÁĞºóµÄÕûÊı¡£ÒªÇóO£¨1£©¸´ÔÓ¶È¡£ÎÒÓÃÁËvector´æÁËabcd£¬È»ºósort£¨£©£¬
+Ã¿´ÎÈ¡vector×î´óºÍ×îĞ¡Öµ£¬°´Ğò´æµ½ĞÂvectorÀïÃæ¡£*/
+
+/*Éè¼ÆÒ»¸öº¯Êı¿ÉÒÔ·µ»ØÊ÷µÄ£¨Ã¿ÌõÂ·¾¶£©µÄ²¨·ù¡£ËùÎ½²¨·ù¾ÍÊÇÂ·¾¶ÉÏËùÓĞ½ÚµãµÄÖµµÄ×î´ó²îÖµ¡£
+ÒªÇó¸´ÔÓ¶ÈÎªO£¨N£©¡£ÎÒÓÃÁËrecursion£¬±éÀú×óÓÒÁ½±ß×ÓÊ÷£¬°ÑÃ¿´ÎµÄ½á¹û´æÔÚstatic vectorÀï£¬×îºóÕÒ³ö´ğ°¸¡£*/
 int Solution::pathAmplitude(TreeNode *root){
-	int pathLength = INT_MIN + 10000;
+	int pathLength = 0;
 	findAmplitude(root, pathLength);
+	cout << endl;
 	return abs(pathLength);
 }
 int Solution::findAmplitude(TreeNode* root, int& path){
-	if (root == NULL) return INT_MIN + 10000;
+	if (root == NULL) return 1; //wrong
 	if (root->right == NULL && root->left == NULL){
-		path = 0;
-		return root->val;
+		//path = 0;
+		return root->val;//return error
 	}
-	int a = findAmplitude(root->left, path);
-	int b = findAmplitude(root->right, path);	
+	
+	int a, b;
+	a = findAmplitude(root->left, path);
+	b = findAmplitude(root->right, path);	
+	
+
+
 	int max_global;//global respect 2 value
 	if (abs(calcAbs(root->val, a)) > abs(calcAbs(root->val, b)))
-		max_global = calcAbs(root->val, a);
+		max_global = a;
 	else 
-		max_global = calcAbs(root->val, b);
-
+		max_global = b;
+	cout << max_global << " ";
 	path = max3(abs(max_global), path, abs(calcAbs(root->val,a,b) ));//local respect 3 value
 	return max_global;	
 }
@@ -765,6 +771,96 @@ int Solution::calcAbs(int a, int b){
 }
 
 
+int Solution::maxProfit1(vector<int> &prices) {
+	if (prices.size() == 0 || prices.size() == 1)
+		return 0;
+	int* profit = new int[prices.size() - 1];
+	for (int i = 0; i<prices.size() - 1; i++)
+		profit[i] = prices[i + 1] - prices[i];
+
+	int max = profit[0];
+	int cur = profit[0];
+
+	for (int i = 1; i<prices.size() - 1; i++){
+		if (cur < 0)
+			cur = profit[i];
+		else
+			cur = cur + profit[i];
+
+		if (max < cur)
+			max = cur;
+	}
+
+	return max<0 ? 0 : max;
+
+}
+int Solution::maxProfit2(vector<int> &prices) {
+	if (prices.size() == 0 || prices.size() == 1)
+		return 0;
+	int *profit = new int[prices.size() - 1];
+	for (int i = 0; i<prices.size() - 1; i++)
+		profit[i] = prices[i + 1] - prices[i];
+	int max = 0;
+	for (int i = 0; i < prices.size() - 1; i++){
+		if (profit[i]>0)
+			max += profit[i];
+	}
+	return max;
+}
+int Solution::maxProfit3(vector<int> &prices){
+	if (prices.size() <= 1)
+		return 0;
+	vector<int> subprice;
+
+	int lowest = prices[0];
+	int max = 0;
+	subprice.push_back(0);
+	for (int i = 0; i<prices.size(); i++){
+		int profit = prices[i] - lowest;
+		if (profit> max)
+			max = profit;
+		subprice.push_back(max);
+		if (prices[i]<lowest)
+			lowest = prices[i];
+	}
+
+	int ret = subprice[prices.size() - 1];
+	int max_2 = 0;
+	int highest = prices[prices.size() - 1];
+	for (int i = prices.size() - 2; i >= 0; --i){
+		int profit_2 = highest - prices[i];
+		if (profit_2>max_2)
+			max_2 = profit_2;
+		int final_profit = max_2 + subprice[i];
+		if (final_profit>ret)
+			ret = final_profit;
+		if (highest<prices[i])
+			highest = prices[i];
+
+	}
+
+	return ret;
+
+}
+
+/*o(n)µÄËã·¨Ö»ÄÜÊÇÏßĞÔÉ¨ÃèÒ»±é£¬¿ÉÄÜµÄÏà·¨ÊÇÎ»ÔËËã¡£¶ÔÓÚÒì»òÀ´Ëµ£º
+1. Òì»òÔËËãÊÇ¿É½»»»£¬¼´ a ^ b = b ^ a
+2. 0 ^ a = a
+ÄÇÃ´Èç¹û¶ÔËùÓĞÔªËØ×öÒì»òÔËËã£¬Æä½á¹ûÎªÄÇ¸ö³öÏÖÒ»´ÎµÄÔªËØ£¬
+Àí½âÊÇa1 ^ a2 ^ ....£¬¿ÉÒÔ½«ËùÓĞÏàÍ¬ÔªËØ½»»»ÖÁÏàÁÚÎ»ÖÃ£¬
+Ê×ÏÈÔËËãÏàÍ¬ÔªËØ£¬Ôò»á²úÉú(n - 1)/2¸ö0Òì»ò»ı£¬Ê£ÓàÒ»¸öµ¥Ò»ÔªËØ£¬
+ËûÃÇµÄÒì»ò»ıÎªÕâ¸öµ¥Ò»ÔªËØ×Ô¼º£¬µÃ½â¡£*/
+int Solution::singleNumber(int A[], int n) {
+
+	int result = A[0];
+	
+	for (int i = 1; i < n; i++){
+		result = result ^ A[i];
+	}
+	return result;
+		
+}
+
 int Solution::singleNumber2(int A[], int n) {
 	int one = 0;
 	int two = 0;
@@ -778,7 +874,6 @@ int Solution::singleNumber2(int A[], int n) {
 	}
 	return one;
 }
-
 /*Given a binary tree, find its maximum depth.
 The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.*/
 int Solution::maxDepth(TreeNode *root) {
@@ -788,3 +883,308 @@ int Solution::maxDepth(TreeNode *root) {
 	int nRight = maxDepth(root->right);
 	return (nLeft > nRight) ? (nLeft + 1) : (nRight + 1);
 }
+
+/* @Google  In an array starting with 1 's (consecutively) and 
+following with 0's, find the boundary of 1's. 
+Ò»¸öÊı×éÒÔÁ¬ĞøµÄ1¿ªÊ¼£¬Ö®ºó½Ó×ÅµÄÊÇ0£¬ÕÒ³öÕâ¸öÊı×é1µÄ±ß½ç£¬Ò²¾ÍÊÇËµ1µÄ½áÊøË÷Òı¡£*/
+
+/*Given two binary trees, write a function to check if they are equal or not.
+Two binary trees are considered equal if they are structurally 
+identical and the nodes have the same value.*/
+
+bool Solution::isSameTree(TreeNode *p, TreeNode *q) {
+	if ((p == NULL&& q != NULL) || (p != NULL&& q == NULL))
+		return false;
+	else if (p == NULL && q == NULL)
+		return true;
+	else if (p->val == q->val)
+		isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+	else 
+		return false;
+}
+
+int Solution::reverse(int x) {
+	int r, num = 0;
+	bool neg = false;
+	if (x < 0){
+		x = -x;
+		neg = true;
+	}		
+	while (x != 0){		
+		r = x % 10;
+		num = num * 10 + r;
+		x = x / 10;
+	}
+
+	if (neg) num = -num;
+	return num;
+}
+
+int Solution::numTrees(int n) {
+	vector<int> num;
+	if (n == 0) return 0; 
+	num.push_back(1);
+	for (int i = 1; i <= n; i++){
+		if (i <= 2) num.push_back(i);
+		else{
+			num.push_back(0);
+			for (int j = 0; j<i; j++)
+				num[i] += num[j] * num[i -j -1];
+		}
+	}
+	return num.back();
+}
+
+vector<int> Solution::inorderTraversal(TreeNode *root) {
+	vector<int> v;
+	if (root == NULL)
+		return v;
+	vector<TreeNode*> vec;
+	TreeNode* p = root;
+	//vec.push_back(root);
+	while (vec.size() > 0 || p){
+		if (p != NULL){
+			vec.push_back(p);
+			p = p->left;
+		}
+			
+		else{
+			p = vec.back();
+			vec.pop_back();
+			v.push_back(p->val);
+			p = p->right;
+		}		
+	}
+	return v;
+}
+
+
+int Solution::searchInsert(int A[], int n, int target) {
+	for (int i = 0; i < n; i++){
+		if (target <= A[i])
+			return i;
+		else if (target > A[i] && target < A[i + 1])
+			return i + 1;
+		else if (target > A[i] && i == n-1)
+			return i + 1;
+		else
+			continue;
+	}
+}
+TreeLinkNode *Solution::createLinkTree(TreeLinkNode* &head, TreeLinkNode *pp, int *a, int start, int end){
+	if (start <= end){
+		int mid = (start + end) >> 1;
+		head = new TreeLinkNode(a[mid]);
+		createLinkTree(head->left, head, a, start, mid - 1);
+		createLinkTree(head->right, head, a, mid + 1, end);
+	}
+	return head;
+}
+
+TreeLinkNode *Solution::connect(TreeLinkNode *root) {
+	 if (root == NULL)
+		return NULL;
+	vector<TreeLinkNode*>vec;
+
+	vec.push_back(root);
+	int cur = 0;
+	int last = 1;
+	while (cur < vec.size()){
+		last = vec.size();
+		int start = cur;
+		int end = last;
+		vector<TreeLinkNode*> sub_v;
+		while (start < end){
+			sub_v.push_back(vec[start]);
+			start++;
+		}
+		for (int i = 1; i < sub_v.size(); i++)
+				sub_v[i - 1]->next = sub_v[i];
+
+		while (cur < last){
+			if (vec[cur]->left != NULL)
+				vec.push_back(vec[cur]->left);
+			if (vec[cur]->right != NULL)
+				vec.push_back(vec[cur]->right);
+			cur++;
+		}
+	}
+	return root;
+	
+}
+
+
+void print(int i){
+	printf("%d ", i);
+}
+void show_result(vector<int>nums){
+	//for_each(nums.begin(), nums.end(), print);
+	for_each(nums.begin(), nums.end(), [=](int i){
+		printf("%d ", i);
+	});
+}
+
+/*
+Ê×ÏÈ£¬Ñ§Ï°Ò»ÏÂÂŞÂíÊı×Ö£¬²Î¿¼ÂŞÂíÊı×Ö
+ÂŞÂíÊı×ÖÊÇ×î¹ÅÀÏµÄÊı×Ö±íÊ¾·½Ê½£¬±È°¢À­²®Êı×éÔç2000¶àÄê£¬ÆğÔ´ÓÚÂŞÂí
+ÂŞÂíÊı×ÖÓĞÈçÏÂ·ûºÅ£º
+»ù±¾×Ö·û	I	V	X	L	C	D	M
+¶ÔÓ¦°¢À­²®Êı×Ö	1	5	10	50	100	500	1000
+¼ÆÊı¹æÔò£º ÏàÍ¬µÄÊı×ÖÁ¬Ğ´£¬Ëù±íÊ¾µÄÊıµÈÓÚÕâĞ©Êı×ÖÏà¼ÓµÃµ½µÄÊı£¬ÀıÈç£ºIII = 3
+Ğ¡µÄÊı×ÖÔÚ´óµÄÊı×ÖÓÒ±ß£¬Ëù±íÊ¾µÄÊıµÈÓÚÕâĞ©Êı×ÖÏà¼ÓµÃµ½µÄÊı£¬ÀıÈç£ºVIII = 8Ğ¡µÄÊı×Ö£¬ÏŞÓÚ£¨I¡¢XºÍC£©
+Ğ¡µÄÊı×ÖÔÚ´óµÄÊı×Ö×ó±ß£¬Ëù±íÊ¾µÄÊıµÈÓÚ´óÊı¼õÈ¥Ğ¡ÊıËùµÃµÄÊı£¬ÀıÈç£ºIV = 4
+Õı³£Ê¹ÓÃÊ±£¬Á¬ĞøµÄÊı×ÖÖØ¸´²»µÃ³¬¹ıÈı´ÎÔÚÒ»¸öÊıµÄÉÏÃæ»­ºáÏß£¬±íÊ¾Õâ¸öÊıÀ©´ó1000±¶£¨±¾ÌâÖ»¿¼ÂÇ3999ÒÔÄÚµÄÊı£¬ËùÒÔÓÃ²»µ½ÕâÌõ¹æÔò£©
+Æä´Î£¬ÂŞÂíÊı×Ö×ª°¢À­²®Êı×Ö¹æÔò£¨½öÏŞÓÚ3999ÒÔÄÚ£©£º
+´ÓÇ°Ïòºó±éÀúÂŞÂíÊı×Ö£¬Èç¹ûÄ³¸öÊı±ÈÇ°Ò»¸öÊıĞ¡£¬Ôò¼ÓÉÏ¸ÃÊı¡£·´Ö®£¬¼õÈ¥Ç°Ò»¸öÊıµÄÁ½±¶È»ºó¼ÓÉÏ¸ÃÊı */
+int Solution::romanToInt(string s) {
+
+	int result = digit(s.at(0));
+
+	for (int i = 0; i < s.length()-1; i++)
+	{
+		if (digit(s.at(i)) >= digit(s.at(i + 1)))
+			result += digit(s.at(i + 1));
+		else
+			result = result - 2 * digit(s.at(i)) + digit(s.at(i + 1)); // result = result-Ç°Ò»¸öÊı(Ğ¡µÄÊı) + (ºóÒ»¸öÊı(´óµÄ)-Ğ¡µÄ) ºÏ²¢´¦Àí		
+	}
+
+	return result;
+}
+
+int Solution::digit(char s){
+	
+	switch (s) {
+		case 'I':
+			return 1;
+		case 'V':
+			return 5;
+		case 'X':
+			return 10;
+		case 'L':
+			return 50;
+		case 'C':
+			return 100;
+		case 'D':
+			return 500;
+		case 'M':
+			return 1000;
+	}
+}
+
+string Solution::intToRoman(int num) {
+	string a;
+	int values[] = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+	string numerals[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+	for (int i = 0; i < 13; i++) {
+		while (num >= values[i]) {
+			num -= values[i];
+			a.append(numerals[i]);
+		}
+	}
+	return a;
+}
+
+//============== DP ====================
+//int Solution::maxSubArray(int A[], int n) {
+//	int sum = 0;
+//	int max = INT_MIN;
+//	for (int i = 0; i < n; i++){
+//		sum += A[i];
+//
+//		if (sum > max)
+//			max = sum;
+//		if (sum < 0)
+//			sum = 0;
+//	}
+//	return max;
+//}
+
+//======= divide and conquer ==============
+int Solution::maxSubArray(int A[], int n) {
+
+	int maxV = INT_MIN;
+	return maxArray(A, 0, n - 1, maxV);
+}
+
+int Solution::maxArray(int A[], int start, int end, int maxV){
+	if (start > end)
+		return INT_MIN; // error
+	int mid = int((start + end) / 2);
+	maxV =  max3(maxArray(A, start, mid - 1, maxV), maxArray(A, mid + 1, end, maxV), maxV);
+	// part of left + part of right
+	int sum = 0, i = 0, maxV1 = INT_MIN, maxV2 = INT_MIN;
+	for (i = mid; i > 0; i--){
+		sum += A[i];
+		if (sum > maxV2)
+			maxV1 = sum;
+	}
+	sum = 0;
+	for (i = mid; i < end; i++){
+		sum += A[i];
+		if (sum > maxV2)
+			maxV2 = sum;
+	}
+	maxV = max(maxV, maxV1 + maxV2 + A[mid]);
+	return maxV;
+}
+
+int climbStairs(int n) {
+	int result = 0;
+	int a1 = 1, a2 = 2;
+	if( n < 2)
+		return n;
+	for(int i = 2; i<=n; i++){
+		result = a1+a2;
+		a1 = a2;
+		a2 = result;
+	}
+	return result;
+}
+
+int permutate(int n, int m){
+	int a;
+	if (n > m){
+		n = n + 1;
+		a = fac(n) / fac(n - m);
+	}
+		
+	else{
+		m = m + 1;
+		a = fac(m) / fac(m - n);
+	}
+		
+	return a;
+}
+
+int combinate(int n, int m){
+	int a;
+	if (n > m){
+		n = n + 1;
+		a = fac(n) / (fac(n - m) * fac(m));
+	}
+		
+	else{
+		m = m + 1;
+		a = fac(m) / (fac(m - n) * fac(n));
+	}
+		
+	return a;
+}
+
+unsigned long long fac(int n)
+{
+	if (n<0) return 0;
+	if (n == 0 || n == 1)return 1;
+	if (n>1)
+	{
+		return n*fac(n - 1);
+	}
+}
+
+int removeElement(int A[], int n, int elem) {
+	int length;
+	sort(A, A + n);
+	length  = (sizeof(A)/sizeof(*A));
+	return length;
+}
+
