@@ -358,10 +358,10 @@ ListNode *Solution::deleteDuplicates_(ListNode *head){
 What if duplicates are allowed at most twice?
 For example, Given sorted array A = [1,1,1,2,2,3],
 Your function should return length = 5, and A is now [1,1,2,2,3].
-思路：
-遍历的时候记录重复的元素次数，如果重复则跳过。
-记录重复元素的方法可以用包含数值的Hash表或者两个BitMap。
-由于要保持输出数组的有序性，当非重复数值的时候我们尽量将数值前移。*/
+思路锟斤拷
+锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷录锟截革拷锟斤拷元锟截达拷锟斤拷锟斤拷锟斤拷锟斤拷锟截革拷锟斤拷锟斤拷锟斤拷锟斤拷
+锟斤拷录锟截革拷元锟截的凤拷锟斤拷锟斤拷锟斤拷锟矫帮拷锟斤拷锟斤拷值锟斤拷Hash锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷BitMap锟斤拷
+锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟皆ｏ拷锟斤拷锟斤拷锟截革拷锟斤拷值锟斤拷时锟斤拷锟斤拷锟角撅拷锟斤拷锟斤拷锟斤拷值前锟狡★拷*/
 int Solution::removeDuplicates(int A[], int n) {
 	bitmap* exist = new bitmap(32767);
 	bitmap* duplicate = new bitmap(32767);
@@ -606,9 +606,9 @@ void Solution::calPath(TreeNode* root){
 			printVec(vec2);		
 			TreeNode *tmp = vec2.back();
 			vec2.pop_back();
-			if (vec2.back()->right == tmp)//如果pop出的元素是栈顶元素的右儿子，则pop该元素
+			if (vec2.back()->right == tmp)//锟斤拷锟斤拷pop锟斤拷锟斤拷元锟斤拷锟斤拷栈锟斤拷元锟截碉拷锟揭讹拷锟接ｏ拷锟斤拷pop锟斤拷元锟斤拷
 				vec2.pop_back();
-			if (vec2.back()->right == NULL &&vec2.back()->left == tmp)//如果pop出的元素是栈顶元素的左儿子且右儿子为空，则pop该元素
+			if (vec2.back()->right == NULL &&vec2.back()->left == tmp)//锟斤拷锟斤拷pop锟斤拷锟斤拷元锟斤拷锟斤拷栈锟斤拷元锟截碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟揭讹拷锟斤拷为锟秸ｏ拷锟斤拷pop锟斤拷元锟斤拷
 				vec2.pop_back();
 		}
 	}
@@ -627,18 +627,18 @@ void Solution::printVec(vector<TreeNode*> vec){
 Given a binary tree, find the maximum path sum.
 The path may start and end at any node in the tree.
 Thoughts:1) Recursively solve this problem
-基本的思路就是，在递归中计算包含该root的最大值并更新至max[0]
-包含该root的最大值有如下几种可能：1.root本身；2.root和左子树中一条路径；
-3.root和右子树中一条路径；4.左子树一条路径和root和右子树一条路径。其中取最大就可更新至max[0]
-其中1，2，3可用来计算上一级的root的最大值，所以要传回去。
-最终，对于最上层的root来说，数内的最大路径不一定要经过根，但由于每个节点都遍历到，其最大值已经存在max[0]里面了。140 ms*/
+锟斤拷锟斤拷锟斤拷思路锟斤拷锟角ｏ拷锟节递癸拷锟叫硷拷锟斤拷锟斤拷锟斤拷锟斤拷root锟斤拷锟斤拷锟斤拷值锟斤拷锟斤拷锟斤拷锟斤拷max[0]
+锟斤拷锟斤拷锟斤拷root锟斤拷锟斤拷锟斤拷值锟斤拷锟斤拷锟铰硷拷锟街匡拷锟杰ｏ拷1.root锟斤拷锟斤拷锟斤拷2.root锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷路锟斤拷锟斤拷
+3.root锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷路锟斤拷锟斤拷4.锟斤拷锟斤拷锟斤拷一锟斤拷路锟斤拷锟斤拷root锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷路锟斤拷锟斤拷锟斤拷锟斤拷取锟斤拷锟斤拷锟酵可革拷锟斤拷锟斤拷max[0]
+锟斤拷锟斤拷1锟斤拷2锟斤拷3锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷root锟斤拷锟斤拷锟斤拷值锟斤拷锟斤拷锟斤拷要锟斤拷锟斤拷去锟斤拷
+锟斤拷锟秸ｏ拷锟斤拷锟斤拷锟斤拷锟较诧拷锟斤拷root锟斤拷说锟斤拷锟斤拷锟节碉拷锟斤拷锟斤拷路锟斤拷锟斤拷一锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷每锟斤拷锟节点都锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷值锟窖撅拷锟斤拷锟斤拷max[0]锟斤拷锟斤拷锟剿★拷140 ms*/
 int Solution::maxPathSum(TreeNode *root) {
 	int sum = INT_MIN+10000;
 	findMaxSum(root, sum);
 	return sum;
 }
-/*每次更新一个节点，分为local maximum (max_sum) and global maximum(max_global),
-local不需要考虑parent节点，所以需要把三数之和进行比较，global需要连接parent节点，因此不能把三个数加和*/
+/*每锟轿革拷锟斤拷一锟斤拷锟节点，锟斤拷为local maximum (max_sum) and global maximum(max_global),
+local锟斤拷锟斤拷要锟斤拷锟斤拷parent锟节点，锟斤拷锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷之锟酵斤拷锟叫比较ｏ拷global锟斤拷要锟斤拷锟斤拷parent锟节点，锟斤拷锟剿诧拷锟杰帮拷锟斤拷锟斤拷锟斤拷锟接猴拷*/
 int Solution::findMaxSum(TreeNode* root, int& max_sum){ 
 	if (root == NULL) return INT_MIN+10000;
 	if (root->right == NULL && root->left == NULL){
@@ -716,15 +716,15 @@ int Solution::maxPathSum(TreeNode *root) {
 	return max_sum;
 }*/
 
-/*G&T 1. LC上面的一个关于数字矩阵的题目
-2. 超级prime 定义为所有前缀是prime的数， 比如239 (2 , 23, 239 are all prime numbers) ,given N 打印所有长度为N的超级prime 
-3. iterator 实现next hasnext，flatten list交替输出 [[7 8 9]  []  [2 3 5] [1 19]] --->   7 2 1 8 3 19 9 5
-@A  shuffle问题。A B C D四个整数，怎样排列可以使得abs(s1-s2)+abs(s2-s3)+abs(s3-s4)的值最小。
-s1-s4是重新排列后的整数。要求O（1）复杂度。我用了vector存了abcd，然后sort（），
-每次取vector最大和最小值，按序存到新vector里面。*/
+/*G&T 1. LC锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷锟街撅拷锟斤拷锟斤拷锟斤拷目
+2. 锟斤拷锟斤拷prime 锟斤拷锟斤拷为锟斤拷锟斤拷前缀锟斤拷prime锟斤拷锟斤拷锟斤拷 锟斤拷锟斤拷239 (2 , 23, 239 are all prime numbers) ,given N 锟斤拷印锟斤拷锟叫筹拷锟斤拷为N锟侥筹拷锟斤拷prime 
+3. iterator 实锟斤拷next hasnext锟斤拷flatten list锟斤拷锟斤拷锟斤拷锟斤拷 [[7 8 9]  []  [2 3 5] [1 19]] --->   7 2 1 8 3 19 9 5
+@A  shuffle锟斤拷锟解。A B C D锟侥革拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫匡拷锟斤拷使锟斤拷abs(s1-s2)+abs(s2-s3)+abs(s3-s4)锟斤拷值锟斤拷小锟斤拷
+s1-s4锟斤拷锟斤拷锟斤拷锟斤拷锟叫猴拷锟斤拷锟斤拷锟斤拷锟斤拷要锟斤拷O锟斤拷1锟斤拷锟斤拷锟接度★拷锟斤拷锟斤拷锟斤拷vector锟斤拷锟斤拷abcd锟斤拷然锟斤拷sort锟斤拷锟斤拷锟斤拷
+每锟斤拷取vector锟斤拷锟斤拷锟斤拷锟斤拷小值锟斤拷锟斤拷锟斤拷锟芥到锟斤拷vector锟斤拷锟芥。*/
 
-/*设计一个函数可以返回树的（每条路径）的波幅。所谓波幅就是路径上所有节点的值的最大差值。
-要求复杂度为O（N）。我用了recursion，遍历左右两边子树，把每次的结果存在static vector里，最后找出答案。*/
+/*锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷锟皆凤拷锟斤拷锟斤拷锟侥ｏ拷每锟斤拷路锟斤拷锟斤拷锟侥诧拷锟斤拷锟斤拷锟斤拷谓锟斤拷锟斤拷锟斤拷锟斤拷路锟斤拷锟斤拷锟斤拷锟叫节碉拷锟斤拷值锟斤拷锟斤拷锟斤拷锟斤拷值锟斤拷
+要锟斤拷锟斤拷锟接讹拷为O锟斤拷N锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷recursion锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷每锟轿的斤拷锟斤拷锟斤拷锟斤拷static vector锟斤，锟斤拷锟斤拷锟揭筹拷锟金案★拷*/
 int Solution::pathAmplitude(TreeNode *root){
 	int pathLength = 0;
 	findAmplitude(root, pathLength);
@@ -843,13 +843,13 @@ int Solution::maxProfit3(vector<int> &prices){
 
 }
 
-/*o(n)的算法只能是线性扫描一遍，可能的相法是位运算。对于异或来说：
-1. 异或运算是可交换，即 a ^ b = b ^ a
+/*o(n)锟斤拷锟姐法只锟斤拷锟斤拷锟斤拷锟斤拷扫锟斤拷一锟介，锟斤拷锟杰碉拷锟洁法锟斤拷位锟斤拷锟姐。锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷说锟斤拷
+1. 锟斤拷锟斤拷锟斤拷锟斤拷锟角可斤拷锟斤拷锟斤拷锟斤拷 a ^ b = b ^ a
 2. 0 ^ a = a
-那么如果对所有元素做异或运算，其结果为那个出现一次的元素，
-理解是a1 ^ a2 ^ ....，可以将所有相同元素交换至相邻位置，
-首先运算相同元素，则会产生(n - 1)/2个0异或积，剩余一个单一元素，
-他们的异或积为这个单一元素自己，得解。*/
+锟斤拷么锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷元锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟姐，锟斤拷锟斤拷锟斤拷为锟角革拷锟斤拷锟斤拷一锟轿碉拷元锟截ｏ拷
+锟斤拷锟斤拷锟斤拷a1 ^ a2 ^ ....锟斤拷锟斤拷锟皆斤拷锟斤拷锟斤拷锟斤拷同元锟截斤拷锟斤拷锟斤拷锟斤拷锟斤拷位锟矫ｏ拷
+锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷同元锟截ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷(n - 1)/2锟斤拷0锟斤拷锟斤拷锟斤拷锟斤拷剩锟斤拷一锟斤拷锟斤拷一元锟截ｏ拷
+锟斤拷锟角碉拷锟斤拷锟斤拷锟斤拷为锟斤拷锟斤拷锟斤拷一元锟斤拷锟皆硷拷锟斤拷锟矫解。*/
 int Solution::singleNumber(int A[], int n) {
 
 	int result = A[0];
@@ -886,7 +886,7 @@ int Solution::maxDepth(TreeNode *root) {
 
 /* @Google  In an array starting with 1 's (consecutively) and 
 following with 0's, find the boundary of 1's. 
-一个数组以连续的1开始，之后接着的是0，找出这个数组1的边界，也就是说1的结束索引。*/
+一锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷1锟斤拷始锟斤拷之锟斤拷锟斤拷锟脚碉拷锟斤拷0锟斤拷锟揭筹拷锟斤拷锟斤拷锟斤拷锟斤拷1锟侥边界，也锟斤拷锟斤拷说1锟侥斤拷锟斤拷锟斤拷锟斤拷锟斤拷*/
 
 /*Given two binary trees, write a function to check if they are equal or not.
 Two binary trees are considered equal if they are structurally 
@@ -1025,17 +1025,17 @@ void show_result(vector<int>nums){
 }
 
 /*
-首先，学习一下罗马数字，参考罗马数字
-罗马数字是最古老的数字表示方式，比阿拉伯数组早2000多年，起源于罗马
-罗马数字有如下符号：
-基本字符	I	V	X	L	C	D	M
-对应阿拉伯数字	1	5	10	50	100	500	1000
-计数规则： 相同的数字连写，所表示的数等于这些数字相加得到的数，例如：III = 3
-小的数字在大的数字右边，所表示的数等于这些数字相加得到的数，例如：VIII = 8小的数字，限于（I、X和C）
-小的数字在大的数字左边，所表示的数等于大数减去小数所得的数，例如：IV = 4
-正常使用时，连续的数字重复不得超过三次在一个数的上面画横线，表示这个数扩大1000倍（本题只考虑3999以内的数，所以用不到这条规则）
-其次，罗马数字转阿拉伯数字规则（仅限于3999以内）：
-从前向后遍历罗马数字，如果某个数比前一个数小，则加上该数。反之，减去前一个数的两倍然后加上该数 */
+锟斤拷锟饺ｏ拷学习一锟斤拷锟斤拷锟斤拷锟斤拷锟街ｏ拷锟轿匡拷锟斤拷锟斤拷锟斤拷锟斤拷
+锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟较碉拷锟斤拷锟街憋拷示锟斤拷式锟斤拷锟饺帮拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷2000锟斤拷锟疥，锟斤拷源锟斤拷锟斤拷锟斤拷
+锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟铰凤拷锟脚ｏ拷
+锟斤拷锟斤拷锟街凤拷	I	V	X	L	C	D	M
+锟斤拷应锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷	1	5	10	50	100	500	1000
+锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷 锟斤拷同锟斤拷锟斤拷锟斤拷锟斤拷写锟斤拷锟斤拷锟斤拷示锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷些锟斤拷锟斤拷锟斤拷锟接得碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟界：III = 3
+小锟斤拷锟斤拷锟斤拷锟节达拷锟斤拷锟斤拷锟斤拷锟揭边ｏ拷锟斤拷锟斤拷示锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷些锟斤拷锟斤拷锟斤拷锟接得碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟界：VIII = 8小锟斤拷锟斤拷锟街ｏ拷锟斤拷锟节ｏ拷I锟斤拷X锟斤拷C锟斤拷
+小锟斤拷锟斤拷锟斤拷锟节达拷锟斤拷锟斤拷锟斤拷锟斤拷锟竭ｏ拷锟斤拷锟斤拷示锟斤拷锟斤拷锟斤拷锟节达拷锟斤拷锟斤拷去小锟斤拷锟斤拷锟矫碉拷锟斤拷锟斤拷锟斤拷锟界：IV = 4
+锟斤拷锟斤拷使锟斤拷时锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟截革拷锟斤拷锟矫筹拷锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷锟芥画锟斤拷锟竭ｏ拷锟斤拷示锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷1000锟斤拷锟斤拷锟斤拷锟斤拷只锟斤拷锟斤拷3999锟斤拷锟节碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+锟斤拷锟轿ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷转锟斤拷锟斤拷锟斤拷锟斤拷锟街癸拷锟津（斤拷锟斤拷锟斤拷3999锟斤拷锟节ｏ拷锟斤拷
+锟斤拷前锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟街ｏ拷锟斤拷锟斤拷某锟斤拷锟斤拷锟斤拷前一锟斤拷锟斤拷小锟斤拷锟斤拷锟斤拷锟较革拷锟斤拷锟斤拷锟斤拷之锟斤拷锟斤拷去前一锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷然锟斤拷锟斤拷锟较革拷锟斤拷 */
 int Solution::romanToInt(string s) {
 
 	int result = digit(s.at(0));
@@ -1045,7 +1045,7 @@ int Solution::romanToInt(string s) {
 		if (digit(s.at(i)) >= digit(s.at(i + 1)))
 			result += digit(s.at(i + 1));
 		else
-			result = result - 2 * digit(s.at(i)) + digit(s.at(i + 1)); // result = result-前一个数(小的数) + (后一个数(大的)-小的) 合并处理		
+			result = result - 2 * digit(s.at(i)) + digit(s.at(i + 1)); // result = result-前一锟斤拷锟斤拷(小锟斤拷锟斤拷) + (锟斤拷一锟斤拷锟斤拷(锟斤拷锟斤拷)-小锟斤拷) 锟较诧拷锟斤拷锟斤拷		
 	}
 
 	return result;
@@ -1188,3 +1188,48 @@ int removeElement(int A[], int n, int elem) {
 	return length;
 }
 
+vector<vector<string> > vv;
+int mcount= 0;
+vector<vector<string> > solveNQueens(int n) {
+	int *arr = new int[n + 1];	
+	NQueens(arr, 1, n);
+	cout<< "total queens: "<< mcount << endl;
+	return vv;
+}
+
+void NQueens(int *arr, int i, int n){
+	for(int j= 1; j != n+1; j++){
+		arr[i] = j;
+		if(verify(arr,i)){
+			if(i == n){
+				mcount++;
+				vv.push_back(getResult(arr,n));
+			}
+			else 
+				NQueens(arr, i+1, n);
+		}
+	}
+}
+
+bool verify( int *arr, int i){
+	for(int k= 1; k!=i;k++)
+		if(arr[k] == arr[i] || (abs(k-i) == abs(arr[k]-arr[i])) )
+			return false;
+	return true;
+}
+
+vector<string> getResult(int *arr, int n){
+	vector<string> v;
+	for(int i = 1; i != n; i++){
+		string s;
+		for(int j = 1; j != n; j++){
+			if(arr[i] == j)
+				s += 'Q';
+			else
+				s += '.';
+
+		}
+		v.push_back(s);
+	}
+	return v;
+}
