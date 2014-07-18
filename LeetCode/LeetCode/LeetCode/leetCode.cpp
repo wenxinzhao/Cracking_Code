@@ -1254,7 +1254,7 @@ int getHeight(TreeNode *root, bool isBalanced){
 
 void inorderRecurTraverse( TreeNode *root ){ // inorder recursive
     if( root == NULL ) return;
-	inorderT( root->left );
+	inorderRecurTraverse( root->left );
 	cout << root->val<< endl;
-    inorderT( root->right);
+    inorderRecurTraverse( root->right);
 }
