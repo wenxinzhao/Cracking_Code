@@ -146,3 +146,6 @@ void NQueens(int *arr, int i, int n);
 vector<vector<string> > solveNQueens(int n);
 bool verify( int *arr, int i);
 vector<string> getResult(int *arr, int n);
+void inorderRecurTraverse( TreeNode *root );
+bool isBalanced(TreeNode *root);
+int getHeight(TreeNode *root, bool isBalanced);
