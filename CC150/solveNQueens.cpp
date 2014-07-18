@@ -4,7 +4,7 @@
 using namespace std;
 
 vector<vector<string> > vv;
-
+int count = 0;
 vector<string> Result(int *arr, int n)
 {
     vector<string> v;
@@ -36,13 +36,16 @@ void NQueens(int *arr, int i, int n)
         arr[i] = j;
         if (Verify(arr, i))
         {
-            if (i == n)
-				vv.push_back(Result(arr, n));       
+            if (i == n){
+				count++;
+				vv.push_back(Result(arr, n));  
+			}
             else
                 NQueens(arr, i + 1, n);
         }
     }
 }
+
  vector<vector<string> > solveNQueens(int n) {
     int *arr = new int[n + 1];	
     NQueens(arr, 1, n);
@@ -52,8 +55,9 @@ void NQueens(int *arr, int i, int n)
 
 int main()
 {
-    int n = 5;
+    int n = 8;
     solveNQueens(n);
+    cout << count << endl;
     system("pause");
     return 0;
 }
