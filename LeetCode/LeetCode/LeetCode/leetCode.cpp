@@ -1233,3 +1233,28 @@ vector<string> getResult(int *arr, int n){
 	}
 	return v;
 }
+
+
+bool isBalanced(TreeNode *root) {
+	bool ans = true;
+    if(root == NULL)
+		return true;
+	getHeight(root, ans);
+	return ans;
+}
+
+int getHeight(TreeNode *root, bool isBalanced){
+	if(root == NULL) return 0;  
+	if(!isBalanced) return -1;  
+	int leftHeight = getHeight(root->left, isBalanced);
+	int rightHeight = getHeight(root->right, isBalanced);
+	if(abs(leftHeight- rightHeight) > 1) isBalanced = false;
+	return max(leftHeight, rightHeight) +1;
+}
+
+void inorderRecurTraverse( TreeNode *root ){ // inorder recursive
+    if( root == NULL ) return;
+	inorderT( root->left );
+	cout << root->val<< endl;
+    inorderT( root->right);
+}
