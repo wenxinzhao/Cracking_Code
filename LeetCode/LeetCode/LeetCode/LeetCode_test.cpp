@@ -97,6 +97,7 @@ void main(){
 	int all_Element[] = { 1,2,4,1,5 };
 	std::cout << "Length of array = " << (sizeof(all_Element)/sizeof(*all_Element)) << std::endl;
 	removeElement(all_Element, 5, 1) ;
+	solveNQueens(8);
 	system("pause");
 }
 
