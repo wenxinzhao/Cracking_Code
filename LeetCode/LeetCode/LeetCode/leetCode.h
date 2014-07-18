@@ -59,8 +59,8 @@ public:
 
 	ListNode *insertionSortList_(ListNode *head);
 
-	/*Given a singly linked list L: L0¡úL1¡ú¡­¡úLn-1¡úLn,
-	reorder it to: L0¡úLn¡úL1¡úLn-1¡úL2¡úLn-2¡ú¡­
+	/*Given a singly linked list L: L0ï¿½ï¿½L1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ln-1ï¿½ï¿½Ln,
+	reorder it to: L0ï¿½ï¿½Lnï¿½ï¿½L1ï¿½ï¿½Ln-1ï¿½ï¿½L2ï¿½ï¿½Ln-2ï¿½ï¿½ï¿½ï¿½
 	You must do this in-place without altering the nodes' values.
 	For example,Given {1,2,3,4}, reorder it to {1,4,2,3}.*/
 
@@ -141,3 +141,8 @@ int permutate(int n, int m);
 unsigned long long fac(int n);
 int climbStairs(int n);
 int removeElement(int A[], int n, int elem);
+
+void NQueens(int *arr, int i, int n);
+vector<vector<string> > solveNQueens(int n);
+bool verify( int *arr, int i);
+vector<string> getResult(int *arr, int n);
