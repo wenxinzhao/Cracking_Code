@@ -2,13 +2,13 @@
 #include <string>
 #include <vector>
 using namespace std;
+
 vector<vector<string> > vv;
 
 vector<string> Result(int *arr, int n)
 {
 	vector<string> v;
-    for (int i = 1; i != n + 1; ++i){
-		
+    for (int i = 1; i != n + 1; ++i){		
 		string s;
 		for(int j = 1; j != n+1; ++j){
 			if(j == arr[i])
@@ -36,10 +36,8 @@ void NQueens(int *arr, int i, int n)
         arr[i] = j;
         if (Verify(arr, i))
         {
-            if (i == n){
-				vv.push_back(Result(arr, n));
-				
-			}        
+            if (i == n)
+				vv.push_back(Result(arr, n));       
             else
                 NQueens(arr, i + 1, n);
         }
