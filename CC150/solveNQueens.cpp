@@ -7,7 +7,7 @@ vector<vector<string> > vv;
 
 vector<string> Result(int *arr, int n)
 {
-	vector<string> v;
+    vector<string> v;
     for (int i = 1; i != n + 1; ++i){		
 		string s;
 		for(int j = 1; j != n+1; ++j){
@@ -52,8 +52,8 @@ void NQueens(int *arr, int i, int n)
 
 int main()
 {
-    int n;
-	solveNQueens(8);
+    int n = 5;
+    solveNQueens(n);
     system("pause");
     return 0;
 }
