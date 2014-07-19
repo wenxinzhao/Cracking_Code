@@ -53,12 +53,9 @@ void flatten(TreeNode *root) {
 		std::reverse(v.begin(), v.end());
 		root = NULL;
 
-		root  = new TreeNode(v.back());
-		v.pop_back();
-		createNewTree(root->right, v);
-
-		//return head;
-		
+		//root  = new TreeNode(v.back());
+		//v.pop_back();
+ 		createNewTree(root, v);		
 }
     
    
@@ -92,10 +89,10 @@ TreeNode* CreateBitree(TreeNode *pNode, int *a ,int n){
 	}
 
 void main(){
-	int a[] = {1,2 };
-	int n = 2;
+	int a[] = {1,2 ,5,3,4,'#',6};
+	int n = 7;
 	TreeNode* root = NULL, *p = NULL;
-	TreeNode* treeHead = CreateBitree(root,a,n);
+	TreeNode* treeHead = CreateBitree(root,a,n-1);
     flatten(treeHead);
 	system("pause");
 }
