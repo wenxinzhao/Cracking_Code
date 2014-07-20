@@ -87,6 +87,29 @@ TreeNode* CreateBitree(TreeNode *pNode, int *a ,int n){
 		}
 		return pNode;
 	}
+unsigned long long fac(int n)
+{
+	if (n<0) return 0;
+	if (n == 0 || n == 1)return 1;
+	if (n>1)
+	{
+		return n*fac(n - 1);
+	}
+}
+double calculator1(){
+
+	double e = 2.718;
+	double sum = 0;
+	double v = 0.67;
+	for(int k = 0; k<=3; k++)
+		sum += pow(2*v,k)/fac(k);
+	sum = sum* pow(e,(-2*v));
+	return sum;
+}
+
+double calculator2(){
+	return (6.0/9.0)*(1.0/0.2) +(2.0/9.0)*(1.0/0.15) +(1.0/9.0)*(1.0/0.1);
+}
 
 void main(){
 	int a[] = {1,2 ,5,3,4,'#',6};
@@ -94,5 +117,8 @@ void main(){
 	TreeNode* root = NULL, *p = NULL;
 	TreeNode* treeHead = CreateBitree(root,a,n-1);
     flatten(treeHead);
+	double g = calculator1();
+	cout << "ans1: " << g << endl;
+	cout << "ans2: " << calculator2() << endl;
 	system("pause");
 }
