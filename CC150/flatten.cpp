@@ -46,47 +46,67 @@ void createNewTree(TreeNode* &head,vector<int> v){
 	createNewTree(head->right, v);
 	}
 }
+
+
 void flatten(TreeNode *root) {
 		if(root == NULL)
 			return;
-        vector<int> v = preorderTraversal(root);
+/*        vector<int> v = preorderTraversal(root);
 		std::reverse(v.begin(), v.end());
 		root = NULL;
-
-		//root  = new TreeNode(v.back());
-		//v.pop_back();
- 		createNewTree(root, v);		
+ 		createNewTree(root, v);	*/	
+		vector<TreeNode*> vec;
+		TreeNode* p = NULL;
+		//p->left = NULL;
+    	vec.push_back(root);
+		while(vec.size() > 0){
+			TreeNode* nd = vec.back();
+    		vec.pop_back();
+    		if (nd->right != NULL)
+    				vec.push_back(nd->right);
+    		if (nd->left != NULL)
+    				vec.push_back(nd->left);
+			nd->left = NULL;
+			if(p != NULL)  
+            {  
+                p->right = nd;  
+            }  
+			nd->right = NULL;  
+			p = nd;
+		
+		}
 }
     
    
 TreeNode* CreateBitree(TreeNode *pNode, int *a ,int n){
-		int END_OF_TREE = '#';
-		int END_OF_MAX = -858993460;
-		int i = 0;
-		pNode = new TreeNode(a[i]);
-		queue <TreeNode*> q;
-		q.push(pNode);
-		while (q.size() > 0 && i < n){
-			TreeNode* nd = q.front();
-			q.pop();
-			if (a[i + 1] == END_OF_TREE || a[i + 1] == END_OF_MAX)
-				nd->left = NULL;
-			else{
-				nd->left = new TreeNode(a[i + 1]);
-				q.push(nd->left);
-			}
-			if(i == n) break;
-			if (a[i + 2] == END_OF_TREE || a[i + 2] == END_OF_MAX)//need to change 
-				nd->right = NULL;
-			else{
-				nd->right = new TreeNode(a[i + 2]);
-				q.push(nd->right);
-			}
-
-			i = i + 2;
+	int END_OF_TREE = '#';
+	int END_OF_MAX = -858993460;
+	int i = 0;
+	pNode = new TreeNode(a[i]);
+	queue <TreeNode*> q;
+	q.push(pNode);
+	while (q.size() > 0 && i < n){
+		TreeNode* nd = q.front();
+		q.pop();
+		if (a[i + 1] == END_OF_TREE || a[i + 1] == END_OF_MAX)
+			nd->left = NULL;
+		else{
+			nd->left = new TreeNode(a[i + 1]);
+			q.push(nd->left);
 		}
-		return pNode;
+		if(i == n) break;
+		if (a[i + 2] == END_OF_TREE || a[i + 2] == END_OF_MAX)//need to change 
+			nd->right = NULL;
+		else{
+			nd->right = new TreeNode(a[i + 2]);
+			q.push(nd->right);
+		}
+
+		i = i + 2;
 	}
+	return pNode;
+}
+
 unsigned long long fac(int n)
 {
 	if (n<0) return 0;
@@ -103,7 +123,7 @@ double calculator1(){
 	double v = 0.67;
 	for(int k = 0; k<=3; k++)
 		sum += pow(2*v,k)/fac(k);
-	sum = sum* pow(e,(-2*v));
+	sum *= pow(e,(-2*v));
 	return sum;
 }
 
@@ -114,6 +134,8 @@ double calculator2(){
 void main(){
 	int a[] = {1,2 ,5,3,4,'#',6};
 	int n = 7;
+	//int a[] = {1,2};
+	//int n = 2;
 	TreeNode* root = NULL, *p = NULL;
 	TreeNode* treeHead = CreateBitree(root,a,n-1);
     flatten(treeHead);
