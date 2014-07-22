@@ -1,8 +1,16 @@
-#include<iostream>
-#include<vector>
-#include<queue>
+#include <iostream>
+#include <vector>
+#include <algorithm> 
+#include <queue>
+#include <cmath>
+
 using namespace std;
 
+struct ListNode {
+int val;
+ListNode *next;
+ListNode(int x) : val(x), next(NULL) {}
+};
 
 struct TreeNode {
 	int val;
@@ -10,6 +18,21 @@ struct TreeNode {
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+//----list initialization-------------
+ListNode *initList(int n, int a[]){
+	ListNode *head = NULL, *p = NULL, *q = NULL;
+	for (int i = 0; i < n; i++){
+		ListNode *nd = new ListNode(a[i]);
+
+		if (i == 0){
+			head = p = nd;
+			continue;
+		}
+		p->next = nd;
+		p = nd;
+	}
+	return head;
+}
 
 TreeNode *createTree(TreeNode* &head, TreeNode *pp, int *a, int start, int end){
 	if (start <= end){
@@ -131,8 +154,36 @@ double calculator2(){
 	return (6.0/9.0)*(1.0/0.2) +(2.0/9.0)*(1.0/0.15) +(1.0/9.0)*(1.0/0.1);
 }
 
-void main(){
-	int a[] = {1,2 ,5,3,4,'#',6};
+TreeNode *createListTree(TreeNode* &head, TreeNode *pp, std::vector<int> a,  int start, int end){
+	if (start <= end){
+		int mid = (start + end) >> 1;
+		head = new TreeNode(a[mid]);
+		createListTree(head->left, head, a, start, mid-1);
+		createListTree(head->right, head, a, mid + 1, end);
+	}
+	return head;
+}
+
+TreeNode *sortedListToBST(ListNode *head) {
+	if(head == NULL)
+		return NULL;
+	std::vector<int> v;
+	while(head != NULL){
+		v.push_back(head->val);
+		head = head->next;
+	}
+	std::reverse(v.begin(), v.end());
+	TreeNode* root = NULL, *pp = NULL;
+
+	createListTree(root, pp, v, 0, v.size()-1);
+	return root;
+
+
+}
+
+
+int main(){
+	int a[] = {1,2 ,3,4,5,6,7 };
 	int n = 7;
 	//int a[] = {1,2};
 	//int n = 2;
@@ -142,5 +193,7 @@ void main(){
 	double g = calculator1();
 	cout << "ans1: " << g << endl;
 	cout << "ans2: " << calculator2() << endl;
-	system("pause");
+	TreeNode *ppp = sortedListToBST(initList(7,a));
+	cout<< ppp->val<<endl;
+	return 0;
 }
