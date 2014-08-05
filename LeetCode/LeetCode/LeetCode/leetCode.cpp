@@ -358,10 +358,7 @@ ListNode *Solution::deleteDuplicates_(ListNode *head){
 What if duplicates are allowed at most twice?
 For example, Given sorted array A = [1,1,1,2,2,3],
 Your function should return length = 5, and A is now [1,1,2,2,3].
-˼·��
-������ʱ����¼�ظ���Ԫ�ش����������ظ���������
-��¼�ظ�Ԫ�صķ��������ð�����ֵ��Hash����������BitMap��
-����Ҫ�������������������ԣ������ظ���ֵ��ʱ�����Ǿ�������ֵǰ�ơ�*/
+
 int Solution::removeDuplicates(int A[], int n) {
 	bitmap* exist = new bitmap(32767);
 	bitmap* duplicate = new bitmap(32767);
@@ -626,19 +623,12 @@ void Solution::printVec(vector<TreeNode*> vec){
 /*Binary Tree Maximum Path Sum
 Given a binary tree, find the maximum path sum.
 The path may start and end at any node in the tree.
-Thoughts:1) Recursively solve this problem
-������˼·���ǣ��ڵݹ��м���������root������ֵ��������max[0]
-������root������ֵ�����¼��ֿ��ܣ�1.root������2.root����������һ��·����
-3.root����������һ��·����4.������һ��·����root��������һ��·��������ȡ�����Ϳɸ�����max[0]
-����1��2��3������������һ����root������ֵ������Ҫ����ȥ��
-���գ��������ϲ���root��˵�����ڵ�����·����һ��Ҫ��������������ÿ���ڵ㶼��������������ֵ�Ѿ�����max[0]�����ˡ�140 ms*/
+Thoughts:1) Recursively solve this problem*/
 int Solution::maxPathSum(TreeNode *root) {
 	int sum = INT_MIN+10000;
 	findMaxSum(root, sum);
 	return sum;
 }
-/*ÿ�θ���һ���ڵ㣬��Ϊlocal maximum (max_sum) and global maximum(max_global),
-local����Ҫ����parent�ڵ㣬������Ҫ������֮�ͽ��бȽϣ�global��Ҫ����parent�ڵ㣬���˲��ܰ��������Ӻ�*/
 int Solution::findMaxSum(TreeNode* root, int& max_sum){ 
 	if (root == NULL) return INT_MIN+10000;
 	if (root->right == NULL && root->left == NULL){
@@ -716,15 +706,6 @@ int Solution::maxPathSum(TreeNode *root) {
 	return max_sum;
 }*/
 
-/*G&T 1. LC������һ���������־�������Ŀ
-2. ����prime ����Ϊ����ǰ׺��prime������ ����239 (2 , 23, 239 are all prime numbers) ,given N ��ӡ���г���ΪN�ĳ���prime 
-3. iterator ʵ��next hasnext��flatten list�������� [[7 8 9]  []  [2 3 5] [1 19]] --->   7 2 1 8 3 19 9 5
-@A  shuffle���⡣A B C D�ĸ��������������п���ʹ��abs(s1-s2)+abs(s2-s3)+abs(s3-s4)��ֵ��С��
-s1-s4���������к���������Ҫ��O��1�����Ӷȡ�������vector����abcd��Ȼ��sort������
-ÿ��ȡvector��������Сֵ�������浽��vector���档*/
-
-/*����һ���������Է������ģ�ÿ��·�����Ĳ�������ν��������·�������нڵ���ֵ��������ֵ��
-Ҫ�����Ӷ�ΪO��N����������recursion����������������������ÿ�εĽ�������static vector������ҳ��𰸡�*/
 int Solution::pathAmplitude(TreeNode *root){
 	int pathLength = 0;
 	findAmplitude(root, pathLength);
@@ -843,13 +824,6 @@ int Solution::maxProfit3(vector<int> &prices){
 
 }
 
-/*o(n)���㷨ֻ��������ɨ��һ�飬���ܵ��෨��λ���㡣����������˵��
-1. ���������ǿɽ������� a ^ b = b ^ a
-2. 0 ^ a = a
-��ô����������Ԫ�����������㣬������Ϊ�Ǹ�����һ�ε�Ԫ�أ�
-������a1 ^ a2 ^ ....�����Խ�������ͬԪ�ؽ���������λ�ã�
-����������ͬԪ�أ���������(n - 1)/2��0��������ʣ��һ����һԪ�أ�
-���ǵ�������Ϊ������һԪ���Լ����ý⡣*/
 int Solution::singleNumber(int A[], int n) {
 
 	int result = A[0];
@@ -885,8 +859,7 @@ int Solution::maxDepth(TreeNode *root) {
 }
 
 /* @Google  In an array starting with 1 's (consecutively) and 
-following with 0's, find the boundary of 1's. 
-һ��������������1��ʼ��֮�����ŵ���0���ҳ���������1�ı߽磬Ҳ����˵1�Ľ���������*/
+following with 0's, find the boundary of 1's. */
 
 /*Given two binary trees, write a function to check if they are equal or not.
 Two binary trees are considered equal if they are structurally 
@@ -1024,18 +997,6 @@ void show_result(vector<int>nums){
 	});
 }
 
-/*
-���ȣ�ѧϰһ���������֣��ο���������
-���������������ϵ����ֱ�ʾ��ʽ���Ȱ�����������2000���꣬��Դ������
-�������������·��ţ�
-�����ַ�	I	V	X	L	C	D	M
-��Ӧ����������	1	5	10	50	100	500	1000
-���������� ��ͬ��������д������ʾ����������Щ�������ӵõ����������磺III = 3
-С�������ڴ��������ұߣ�����ʾ����������Щ�������ӵõ����������磺VIII = 8С�����֣����ڣ�I��X��C��
-С�������ڴ����������ߣ�����ʾ�������ڴ�����ȥС�����õ��������磺IV = 4
-����ʹ��ʱ�������������ظ����ó���������һ���������滭���ߣ���ʾ����������1000��������ֻ����3999���ڵ����������ò�������������
-���Σ���������ת���������ֹ��򣨽�����3999���ڣ���
-��ǰ���������������֣�����ĳ������ǰһ����С�������ϸ�������֮����ȥǰһ����������Ȼ�����ϸ��� */
 int Solution::romanToInt(string s) {
 
 	int result = digit(s.at(0));
