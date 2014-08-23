@@ -4,7 +4,7 @@
 using namespace std;
 
 
-O(M*N) + O(1)
+//O(M*N) + O(1)
 void setZeroes(vector<vector<int> > &matrix) {
 	const size_t m = matrix.size();
 	const size_t n = matrix.back().size();
