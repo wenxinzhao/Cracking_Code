@@ -3,6 +3,54 @@
 #include <stdlib.h>
 using namespace std;
 
+
+O(M*N) + O(1)
+void setZeroes(vector<vector<int> > &matrix) {
+	const size_t m = matrix.size();
+	const size_t n = matrix.back().size();
+	bool row = false;
+	bool col = false;
+	// process 1st col
+	for (int i = 0; i < m;i++){
+		if (matrix[i][0] == 0){
+			col = true;
+			break;
+		}			
+	}
+	// process 1st row
+	for (int j = 0; j < n; j++){
+		if (matrix[0][j] == 0){
+			row = true;
+			break;
+		}
+	}
+	// process others 
+	for (int i = 1; i < m; i++){
+		for (int j = 1; j < n; j++){
+			if (matrix[i][j] == 0){
+				matrix[0][j] = 0;
+				matrix[i][0] = 0;
+			}				
+		}
+	}
+	// set 0 based on 1st row and col
+	for (int i = 1; i < m; i++){
+		for (int j = 1; j < n; j++){
+			if (matrix[i][0] == 0 || matrix[0][j] == 0)
+				matrix[i][j] = 0;
+		}
+	}
+	// set 0 on 1st col
+	if (col)
+		for (int i = 0; i < m; i++)
+			matrix[i][0] = 0;
+	// set 0 on 1st row
+	if (row)
+		for (int j = 0; j < n; j++)
+			matrix[0][j] = 0;
+}
+
+
 void setZeroes(vector<vector<int> > &matrix) {
 	const size_t m = matrix.size();
 	const size_t n = matrix.back().size();
