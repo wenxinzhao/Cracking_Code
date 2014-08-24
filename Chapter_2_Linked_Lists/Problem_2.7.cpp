@@ -22,7 +22,8 @@ ListNode *initList(int a[], int n){
 	return head;
 }
 
-ListNode *reverse(ListNode *head){
+
+ListNode *reverse(ListNode *head, int &count){
 	ListNode *reverse = NULL;
 	while (head != NULL)
 	{
@@ -32,25 +33,30 @@ ListNode *reverse(ListNode *head){
 		else{
 			nd->next = reverse;
 			reverse = nd;
-		}
-				
+		}				
 		head = head->next;
-
+		count++;
 	}
 	return reverse;
 }
 
 bool isPalindrome(ListNode *s1) {
 	if (s1 == NULL) return false;
-	ListNode *s2 = reverse(s1);
+	int cnt = 0;
+	ListNode *s2 = reverse(s1, cnt);
+	int i = 0;
 	while (s1 != NULL && s2 != NULL){
 		if (s1->val != s2->val)
 			return false;
 		s1 = s1->next;
 		s2 = s2->next;
+		i++;
+		if (i > (cnt / 2))
+			break;
 	}
 	return true;
 }
+
 
 
 int main(){
