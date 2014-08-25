@@ -1,3 +1,17 @@
+/**
+Given a linked list, determine if it has a cycle in it.
+
+Follow up:
+Can you solve it without using extra space?
+
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     ListNode *next;
+*     ListNode(int x) : val(x), next(NULL) {}
+* };
+*/
+
 #include<iostream>
 using namespace std;
 struct ListNode {
@@ -28,6 +42,8 @@ public:
 				fast = fast->next->next;
 			if (slow == fast)
 			{
+				cout << 10000 - count << endl;
+				cout << slow->val << endl;
 				return true;
 			}
 			else
@@ -43,7 +59,7 @@ public:
 //--------------------------
 ListNode* initList(int a[], int n, int m){
 	ListNode *head = NULL, *p = NULL,*q = NULL;
-	for (int i = 0; i < 10; i++){
+	for (int i = 0; i < n; i++){
 		ListNode *nd = new ListNode(a[i]);
 		if (i == m) q = nd;
 		if (i == 0){
@@ -52,19 +68,15 @@ ListNode* initList(int a[], int n, int m){
 		}
 		p->next = nd;
 		p = nd;
-
 	}
-
 	p->next = q;
 	return head;
-	
-
 }
 //---------------------------
 Solution sul;
 void main(){
 	int a[] = {1,2,3,4,5,1,6,7,8,9,0};
-	int n = 10, m = 2;
+	int n = 11,  m = 2;
 	if (sul.hasCycle(initList(a, n, m)))
 		cout << "the list has a circle" << endl;
 	else 
