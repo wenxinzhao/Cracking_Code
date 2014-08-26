@@ -9,7 +9,6 @@ public:
 		index = i;
 	}
 	void add(int i) {
-		// add a disk on this tower
 		disks.push(i);
 	}
 	int getIndex() {
