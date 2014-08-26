@@ -5,7 +5,7 @@ The following are the only functions that should be used to write this program:
 push | pop | peek | isEmpty.
 
 Terry
-2/15/2014
+8/26/2014
 */
 
 #include<iostream>
